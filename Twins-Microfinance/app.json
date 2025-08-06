@@ -1,0 +1,39 @@
+{
+  "expo": {
+    "name": "Twins-Microfinance",
+    "slug": "Twins-Microfinance",
+    "version": "1.0.1",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "notification": {
+      "icon": "./assets/icon.png",
+      "color": "#ffffff"
+    },
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "ttpc.TwinsMicrofinance"
+    },
+    "android": {
+      "versionCode": 1,
+      "package": "ttpc.TwinsMicrofinance",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/icon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "8ed413b9-a4a8-419b-b8c5-11f0a396d709"
+      }
+    }
+  }
+}
