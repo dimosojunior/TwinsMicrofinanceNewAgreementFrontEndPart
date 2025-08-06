@@ -355,7 +355,29 @@ const TableRowComponent = ({ item}) => {
 
       return (
     <View key={item.id} style={globalStyles.row2}>
-      <Text style={[globalStyles.cell, globalStyles.firstNameColumn]}>{item.JinaLaKituo}</Text>
+      <Text style={[globalStyles.cell, 
+        globalStyles.firstNameColumn]}>
+        {item.JinaLaKituo}</Text>
+
+        <Text style={[globalStyles.cell, 
+        globalStyles.otherColumns]}>
+        {item.Mahali}</Text>
+
+         <Text style={[globalStyles.cell, 
+        globalStyles.otherColumns]}>
+        {item.ManagerWaKituoFullName}</Text>
+
+         <Text style={[globalStyles.cell, 
+        globalStyles.otherColumns]}>
+        {item.ManagerWaKituoMobileNumber}</Text>
+
+        <Text style={[globalStyles.cell, 
+        globalStyles.otherColumns]}>
+        {item.MsaidiziWaKituoFullName}</Text>
+
+         <Text style={[globalStyles.cell, 
+        globalStyles.otherColumns]}>
+        {item.MsaidiziWaKituoMobileNumber}</Text>
     
 
     {userData && userData.is_admin === true && (
@@ -383,10 +405,31 @@ const TableRowComponent = ({ item}) => {
 
  if (item.JinaLaKituo.toLowerCase().includes(input.toLowerCase())) {
 
-
   return (
     <View key={item.id} style={globalStyles.row2}>
-      <Text style={[globalStyles.cell, globalStyles.firstNameColumn]}>{item.JinaLaKituo}</Text>
+      <Text style={[globalStyles.cell, 
+        globalStyles.firstNameColumn]}>
+        {item.JinaLaKituo}</Text>
+
+        <Text style={[globalStyles.cell, 
+        globalStyles.otherColumns]}>
+        {item.Mahali}</Text>
+
+         <Text style={[globalStyles.cell, 
+        globalStyles.otherColumns]}>
+        {item.ManagerWaKituoFullName}</Text>
+
+         <Text style={[globalStyles.cell, 
+        globalStyles.otherColumns]}>
+        {item.ManagerWaKituoMobileNumber}</Text>
+
+        <Text style={[globalStyles.cell, 
+        globalStyles.otherColumns]}>
+        {item.MsaidiziWaKituoFullName}</Text>
+
+         <Text style={[globalStyles.cell, 
+        globalStyles.otherColumns]}>
+        {item.MsaidiziWaKituoMobileNumber}</Text>
     
 
     {userData && userData.is_admin === true && (
@@ -406,6 +449,7 @@ const TableRowComponent = ({ item}) => {
 
     </View>
   )
+
 
 
 
@@ -443,7 +487,7 @@ const TableRowComponent = ({ item}) => {
                 fontFamily: 'Medium',
               }}
             >
-             Vituo Vyote
+             Vikundi Vyote
             </Text>
           </View>
 
@@ -460,7 +504,7 @@ const TableRowComponent = ({ item}) => {
               <TextInput
                 value={input}
                 onChangeText={(text) => setInput(text)}
-                placeholder="Jina la kituo"
+                placeholder="Jina la Kikundi"
                 placeholderTextColor="black"
                 style={globalStyles.AppInputHomeScreenOtherPages}
               />
@@ -501,7 +545,28 @@ const TableRowComponent = ({ item}) => {
 
               <View style={globalStyles.table}>
                 <View style={[globalStyles.row, globalStyles.header]}>
-                  <Text style={[globalStyles.cell2, globalStyles.firstNameColumn]}>Jina</Text>
+                  <Text style={[globalStyles.cell2, 
+                    globalStyles.firstNameColumn]}>Kikundi</Text>
+
+                  <Text style={[globalStyles.cell2, 
+                    globalStyles.otherColumns]}>Mahali</Text>
+
+                   <Text style={[globalStyles.cell2, 
+                    globalStyles.otherColumns]}>Manager</Text>
+
+                   <Text style={[globalStyles.cell2, 
+                    globalStyles.otherColumns]}>Simu Ya Manager</Text>
+
+                      <Text style={[globalStyles.cell2, 
+                    globalStyles.otherColumns]}>Msaidizi</Text>
+
+                   <Text style={[globalStyles.cell2, 
+                    globalStyles.otherColumns]}>Simu Ya Msaidizi</Text>
+
+                    
+
+
+
                  {userData && userData.is_admin === true && (
                   <Text style={[globalStyles.cell2, globalStyles.otherColumns]}>Futa</Text>
                  

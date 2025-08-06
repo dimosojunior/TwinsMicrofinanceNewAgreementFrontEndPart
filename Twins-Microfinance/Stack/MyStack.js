@@ -64,6 +64,9 @@ import FutaFaini from '../Marejesho/FutaFaini';
 
 import Empty from '../Screens/Empty';
 
+import WafanyakaziWote from '../Screens/WafanyakaziWote';
+import ViewMfanyakazi from '../Screens/ViewMfanyakazi';
+
 
 const Stack = createStackNavigator();
 
@@ -396,6 +399,23 @@ function MyStack( {navigation}){
       //     })}
       />
 
+
+   <Stack.Screen
+      name="Wafanyakazi Wote"
+      component={WafanyakaziWote}
+      // options={ () => ({ 
+      //       headerLeft: () => <Header  title='About Page' />,
+      //     })}
+      />
+
+
+   <Stack.Screen
+      name="View Mfanyakazi"
+      component={ViewMfanyakazi}
+      // options={ () => ({ 
+      //       headerLeft: () => <Header  title='About Page' />,
+      //     })}
+      />
 
 
 

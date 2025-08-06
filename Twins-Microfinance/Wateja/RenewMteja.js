@@ -264,12 +264,14 @@ useEffect(() => {
        setJinaLaMzaminiWa2(data.JinaLaMzaminiWa2);
 
         setInterval(data.Interval.toString());
-
+        setSelectedJinaLaKituo(data.JinaLaKituo?.id || null);
+       
+       setStartDate(data.date_of_birth ? new Date(data.date_of_birth).getDate().toString() : '');
 
         //console.log("Data fetched successfully");
       } catch (error) {
-        handleErrorMessage(error);
-        //console.log("Error fetching post details:", error);
+        //handleErrorMessage(error);
+        console.log("Error fetching post details:", error);
       }
     }
   };

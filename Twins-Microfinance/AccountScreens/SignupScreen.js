@@ -85,7 +85,7 @@ const [isPending2, setPending2] =useState(true);
 
   //console.log("Push Token Again", pushToken);
 
-
+ const [secureText, setSecureText] = useState(true);
  const [isPasswordVisible, setPasswordVisible] = useState(false);
 
   //const {width,height} = Dimensions.get('window');
@@ -93,6 +93,7 @@ const [isPending2, setPending2] =useState(true);
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [password2, setPassword2] = useState('');
+  const [full_name, setfull_name] = useState('');
 
   //const [phone, setPhone] = useState('');
   //const [profile_image, setProfile_image] = useState('');
@@ -174,7 +175,7 @@ const handleErrorMessage = (error) => {
 
     if (!username) {
      // setError('please enter your username');
-      showAlertFunction("Tafadhali ingiza jina lako kwa usahihi");
+      showAlertFunction("Tafadhali ingiza jina unalotumia (username) kwa usahihi");
       return;
     }
 
@@ -197,7 +198,7 @@ const handleErrorMessage = (error) => {
 
 
  if (!selectedJinaLaKituo) {
-          showAlertFunction('Tafadhali chagua kituo unachomsajili mtumiaji.');
+          showAlertFunction('Tafadhali chagua kikundi unachomsajili mtumiaji.');
           return;
         }
 
@@ -221,7 +222,7 @@ const handleErrorMessage = (error) => {
         //email: email,
         password: password,
         username: username,
-        //phone: phone,
+        //full_name: full_name,
         is_admin: isAdmin,
         is_staff: isStaff,
         is_cashier: isCashier,
@@ -231,7 +232,7 @@ const handleErrorMessage = (error) => {
       });
       //Alert.alert("You have registered Successfully");
        //showAlertFunction(expoPushToken);
-       showAlertFunction("Umefanikiwa kusajili mtumiaji mpya");
+       showAlertFunction("Umefanikiwa kusajili mfanyakazi mpya");
       //navigation.replace('Home Stack');
 
       //const token = response.data.token; // Extract the token from the response
@@ -312,80 +313,91 @@ const handleErrorMessage = (error) => {
     }
   };
 
-    return(
-
-        <>{!fontsLoaded ? (<View/>):(
-
-     <>
+  
+  return (
 
 
- {!isPending2 ? (
+    <>{!fontsLoaded ? (<View/>):(
 
+  
 
-       
-
+<LinearGradient colors={['#015d68', '#000']} style={globalStyles.container}>
+   
       
-       <KeyboardAvoidingView style={styles.mainCon}>
-
-       <MinorHeader />
-        <ScrollView 
-        keyboardShouldPersistTaps="handled"
-        >
-
-      
-        <View style={{position: 'relative',
-         bottom: 30,
-         marginTop:50,
-       }}>
+  {isPending && (
+  <View style={globalStyles.loaderOverlay}>
+    <View style={globalStyles.loaderContent}>
+      <ActivityIndicator size="large" color="#fff" />
+      <Text style={globalStyles.loaderText}>Taarifa mpya ya kikundi</Text>
+      <Text style={globalStyles.loaderCounter2}>tafadhali subiri....</Text>
+    </View>
+  </View>
+)}
 
 
-       
-          <View style={{
-         bottom: 10,
-         //marginTop:50,
-         justifyContent:'center',
-         alignItems:'center',
-       }}>
-           <Image
-
-          style={{
-            width:60,
-            height:60,
-            borderRadius:50,
-          }}
-           source={require('../assets/icon.png')} 
-          >
-         </Image>
-
-         </View>
 
 
-        <View style={{position: 'relative', bottom: 30}}>
-          <View style={styles.loginIcon}>
-            {/*<SvgIcon icon={'enterOtp'} width={280} height={280} />*/}
-       
-          </View>
-          <View style={styles.container}>
-              <View style={styles.loginLblCon}>
-              <Text style={styles.loginLbl}>Gegwajo Microfinance</Text>
-            </View>
 
 
-            <View style={styles.forgotDes}>
-              <Text style={styles.forgotDesLbl}>
-               Sajili taarifa za kituo husika kwa kujaza sehemu zote hapo chini
-              </Text>
-           {/*   <Text style={styles.forgotDesLbl}>+91 1234567890</Text>*/}
-            </View>
-            <View style={styles.formCon}>
+         <MinorHeader />
 
-            {/*  <OTPInputView
-               // pinCount={4}
-                autoFocusOnLoad
-                style={{width: '80%', height: 70}}
-                
-               
-              />*/}
+         <Text
+style={globalStyles.AppChaguaHudumaTextHomeScreen}  
+
+>Sajili Taarifa Za Kikundi</Text>
+
+    <ScrollView 
+    keyboardShouldPersistTaps="handled"
+    style={styles.container}>
+     {/* <Text style={styles.label}>Jina Kamili</Text>
+      <TextInput value={full_name} onChangeText={setfull_name} 
+      placeholder="Jina Kamili" 
+      placeholderTextColor="wheat"
+      style={styles.input} />*/}
+  
+   <Text style={styles.label}>Jina la kuingilia</Text>
+      <TextInput value={username} onChangeText={setUsername} 
+      style={styles.input}
+      placeholder="username" 
+      placeholderTextColor="wheat"
+       />
+
+  
+{/* Password Field */}
+<Text style={styles.label}>Neno Siri</Text>
+  <View style={styles.inputContainer}>
+      <Ionicons name="lock-closed-outline" size={20} color="#fff" style={styles.icon} />
+      <TextInput 
+          style={styles.input} 
+          placeholder="neno siri"
+          placeholderTextColor="wheat"
+          secureTextEntry={secureText}
+          value={password}
+       onChangeText={(text) => setPassword(text)}
+      />
+      <TouchableOpacity onPress={() => setSecureText(!secureText)}>
+          <Ionicons name={secureText ? "eye-off-outline" : "eye-outline"} size={20} color="#fff" />
+      </TouchableOpacity>
+  </View>
+
+
+  {/* Password Field */}
+<Text style={styles.label}>Rudia Neno Siri</Text>
+  <View style={styles.inputContainer}>
+      <Ionicons name="lock-closed-outline" size={20} color="#fff" style={styles.icon} />
+      <TextInput 
+          style={styles.input} 
+          placeholder="Rudia neno siri"
+          placeholderTextColor="wheat"
+          secureTextEntry={secureText}
+          value={password2}
+       onChangeText={(text) => setPassword2(text)}
+      />
+      <TouchableOpacity onPress={() => setSecureText(!secureText)}>
+          <Ionicons name={secureText ? "eye-off-outline" : "eye-outline"} size={20} color="#fff" />
+      </TouchableOpacity>
+  </View>
+
 
 
 
@@ -406,26 +418,13 @@ const handleErrorMessage = (error) => {
 
           ]}>
             <Text style={globalStyles.TaxTypeAddNewProject}>
-                 Kituo
+                 Kikundi
             </Text>
 
      <View style={globalStyles.picker}>
 
             
-       {/*   <Picker
-           style={globalStyles.pickerInputAddNewProject}
-            selectedValue={selectedMkoa}
-            onValueChange={(itemValue) => setSelectedMkoa(itemValue)}
-          >
-
-            {Mkoa.map((x) => (
-              <Picker.Item
-                key={x.id}
-                label={selectedMkoa ? selectedMkoa : x.JinaLaMkoa}
-                value={x}
-              />
-            ))}
-          </Picker>*/}
+      
           <Picker
     selectedValue={selectedJinaLaKituo}
     onValueChange={(itemValue) => setSelectedJinaLaKituo(itemValue)}
@@ -449,254 +448,6 @@ const handleErrorMessage = (error) => {
   {/*  mwisho wa picker*/}
 
 
-
-
-
-
-                 {/*  mwanzo wa username*/}
-            <View 
-            style={[styles.dataContainerForPassword, 
-              {
-                 width:width-20,
-                marginTop:0,
-              }
-
-              ]}
-          >
-
-            <View style={{
-          width:'10%',
-          //justifyContent:"center",
-         // backgroundColor:'red',
-        }}>
-
-         {/* Add a button to toggle password visibility */}
-        <TouchableOpacity
-          
-          style={{ 
-            alignSelf: 'flex-start', 
-            marginRight: 0,color:'black',
-            flexDirection:'row',
-            alignItems:'center',
-             }}
-          >
-
-          <FontAwesome size={25} color="green" name="user-circle" />
-
-        {/*  <Text style={{
-           color: 'black', 
-           fontSize: 16,
-           fontWeight:'bold',
-           marginLeft:10,
-            }}>
-            +255
-          </Text>*/}
-        </TouchableOpacity>
-
-        </View>
-
-
-          <TextInput
-          style= {[styles.textinputi,{ 
-            color: 'black',width:'88%',
-            //backgroundColor:'black',
-
-            //paddingVertical:20,
-          }]}
-          placeholder="Jina la kuingilia"
-          //keyboardType="numeric"
-          
-          value={username}
-          onChangeText={setUsername}
-        placeholderTextColor="black"
-        />
-
-      
-        </View>
-      {/*  mwisho wa username*/}
-
-
-
-
-          {/*     <TextInput 
-              placeholder='Ingiza namba yako ya simu, 0*********' 
-              //style={{width: '80%', height: 100}}
-              style={[styles.textinput,{
-                  width:width-20,
-                  //height:70,
-                  color:'black',
-                  marginTop:20,
-              }]} 
-              placeholderTextColor="black"
-             value={phone}
-              onChangeText={setPhone}
-              
-             // keyboardType="email-address"
-              />*/}
-
-       
-  
-
-     
-
-           
-          {/*  mwanzo wa neno siri*/}
-            <View 
-               style={[styles.dataContainerForPassword, 
-              {
-                 width:width-20,
-                marginTop:20,
-              }
-
-              ]}
-          >
-
-                <View style={{
-          width:'10%',
-          //justifyContent:"center",
-         // backgroundColor:'red',
-        }}>
-
-         {/* Add a button to toggle password visibility */}
-        <TouchableOpacity
-          
-          style={{ 
-            alignSelf: 'flex-start', 
-            marginRight: 0,color:'black',
-            flexDirection:'row',
-            alignItems:'center',
-             }}
-          >
-
-          <FontAwesome size={25} color="green" name="key" />
-
-        {/*  <Text style={{
-           color: 'black', 
-           fontSize: 16,
-           fontWeight:'bold',
-           marginLeft:10,
-            }}>
-            +255
-          </Text>*/}
-        </TouchableOpacity>
-
-        </View>
-
-          <TextInput
-          style= {[styles.textinputi,{ 
-            color: 'black',
-          width:'65%'
-        }]}
-          placeholder="Neno siri la kuingilia"
-          secureTextEntry={!isPasswordVisible} // Toggle secureTextEntry based on isPasswordVisible state
-         value={password}
-          onChangeText={(text) => setPassword(text)}
-        placeholderTextColor="black"
-        />
-
-        <View style={{
-          width:'20%',
-          justifyContent:"center",
-        }}>
-
-         {/* Add a button to toggle password visibility */}
-        <TouchableOpacity
-          onPress={() => setPasswordVisible(!isPasswordVisible)}
-          style={{ alignSelf: 'flex-end', marginRight: 0,color:'black' }}>
-          <Text style={{ color: 'black', fontSize: 16,fontWeight:'bold' }}>
-            {/*{isPasswordVisible ? 'Hide' : 'Show'} Password*/}
-            {isPasswordVisible ? (
-              <FontAwesome size={25} color="black" name="eye-slash" />
-            ):(
-              <FontAwesome size={25} color="black" name="eye" />
-            )}
-          </Text>
-        </TouchableOpacity>
-
-        </View>
-        </View>
-      {/*  mwisho wa neno siri*/}
-
-
-
-
-
-
-        {/*  mwanzo wa neno siri*/}
-            <View 
-            style={[styles.dataContainerForPassword, 
-              {
-                 width:width-20,
-                marginTop:20,
-              }
-
-              ]}
-          >
-
-               <View style={{
-          width:'10%',
-          //justifyContent:"center",
-         // backgroundColor:'red',
-        }}>
-
-         {/* Add a button to toggle password visibility */}
-        <TouchableOpacity
-          
-          style={{ 
-            alignSelf: 'flex-start', 
-            marginRight: 0,color:'black',
-            flexDirection:'row',
-            alignItems:'center',
-             }}
-          >
-
-          <FontAwesome size={25} color="green" name="key" />
-
-        {/*  <Text style={{
-           color: 'black', 
-           fontSize: 16,
-           fontWeight:'bold',
-           marginLeft:10,
-            }}>
-            +255
-          </Text>*/}
-        </TouchableOpacity>
-
-        </View>
-          <TextInput
-          style= {[styles.textinputi,{ 
-            color: 'black',width:'65%',
-            //paddingVertical:20,
-          }]}
-          placeholder=" Rudia neno siri"
-          secureTextEntry={!isPasswordVisible} // Toggle secureTextEntry based on isPasswordVisible state
-          value={password2}
-          onChangeText={setPassword2}
-        placeholderTextColor="black"
-        />
-
-        <View style={{
-          width:'20%',
-          //justifyContent:"center",
-        }}>
-
-         {/* Add a button to toggle password visibility */}
-        <TouchableOpacity
-          onPress={() => setPasswordVisible(!isPasswordVisible)}
-          style={{ alignSelf: 'flex-end', marginRight: 0,color:'black' }}>
-          <Text style={{ color: 'black', fontSize: 16,fontWeight:'bold' }}>
-            {/*{isPasswordVisible ? 'Hide' : 'Show'} Password*/}
-            {isPasswordVisible ? (
-              <FontAwesome size={25} color="black" name="eye-slash" />
-            ):(
-              <FontAwesome size={25} color="black" name="eye" />
-            )}
-          </Text>
-        </TouchableOpacity>
-
-        </View>
-        </View>
-      {/*  mwisho wa neno siri*/}
 
 
 
@@ -755,65 +506,16 @@ const handleErrorMessage = (error) => {
 
 
 
-            {!isPending && (
-              <Pressable 
-              style={{
-                flexDirection:'row',
-                justifyContent:'space-between',
-                alignItems:'center',
-                  backgroundColor:'green',
-                  marginTop:50,
-                  paddingVertical:10,
-                  paddingHorizontal:40,
-                  borderRadius:8,
-                  color:'white',
-                  borderColor:'white',
-                  borderWidth:1,
-               // backgroundColor:'black'
-              }}
-              onPress={handleRegistration}>
-                <Text style={styles.registerLbl}>Sajili taarifa za kituo</Text>
-                 <Ionicons name='arrow-forward-circle' 
-                size={28}
-                color='white' 
-                style={{
-                 // marginTop:70,
-                }} 
-                
-                 />
-              </Pressable>
-              )}
+
+
+      <TouchableOpacity onPress={handleSubmit} style={styles.submitButton}>
+        <Text style={styles.submitText}>Submit</Text>
+      </TouchableOpacity>
 
 
 
 
-           {isPending &&
-                         <View style={styles.btnContainer}>
-                        <TouchableOpacity 
-                        
-                        >
-                            <View style={styles.button1}>
-                               
-                             <ActivityIndicator size="large" color="green" /> 
-                            </View>
-                        </TouchableOpacity>
-                     
-                    </View>}
-
-
-
-
-
-            
-            </View>
-          </View>
-        </View>
-
-
-
-
-
-               <AwesomeAlert
+         <AwesomeAlert
                 show={showAlert}
                 showProgress={false}
                 // title="Overdose Stores"
@@ -829,32 +531,45 @@ const handleErrorMessage = (error) => {
                 customView={
                   <View style={globalStyles.alertContent}>
                     <Image source={require('../assets/icon.png')} style={globalStyles.alertImage} />
-                    <Text style={globalStyles.alertTitle}>Gegwajo Microfinance</Text>
+                    <Text style={globalStyles.alertTitle}>Twins Microfinance</Text>
                     <Text style={globalStyles.alertMessage}>{alertMessage}</Text>
                   </View>
                 }
               />
+      
+
+<View style={{
+  marginBottom:100,
+}}>
+  {/*<Text style={{
+    color:'white',
+  }}>Vuta juu</Text>*/}
+</View>
 
 
-        </View>
 
-</ScrollView>
-      </KeyboardAvoidingView>
-
-     
-               ):(
-
-<LotterViewScreen />
-
-)}
-
-    
-
-    </>
+    </ScrollView>
 
 
-         )}</>
-    )
+ </LinearGradient> 
+
+
+
+
+
+
+
+
+      
+  
+
+     )}</>
+
+
+
+
+
+  );
 }
 
 export default SignupScreen;
@@ -863,115 +578,123 @@ export default SignupScreen;
 
 
 const styles = StyleSheet.create({
-  mainCon: {
-    backgroundColor: 'white',
+  container: { padding: 16 },
+  label: { 
+    fontWeight: 'bold',
+     marginTop: 12 ,
+     marginBottom:10,
+     color:'white',
+   },
+  input: {
+    borderWidth: 1,
+    borderColor: 'white',
+    padding: Platform.OS === 'ios' ? 10 : 5,
+    marginBottom: 10,
+    borderRadius: 5,
+    color:'wheat',
+  },
+  suggestion: {
+    padding: 10,
+    backgroundColor: '#eee',
+    borderBottomWidth: 1,
+    borderColor: 'white',
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 10,
+  },
+  picker: {
     flex: 1,
+    height: 50,
+    marginHorizontal: 3,
+    color:'white',
+    //backgroundColor:'white',
   },
-  loginIcon: {
-    alignSelf: 'center',
-  },
-  formCon: {
+  genderButton: {
+    flex: 1,
+    padding: 10,
     alignItems: 'center',
+    marginRight: 10,
+    backgroundColor: '#ddd',
+    borderRadius: 5,
   },
-  container: {
-    paddingHorizontal: 20,
-    marginTop: 50,
+  selectedGender: {
+    backgroundColor: '#aaa',
   },
-  loginLblCon: {
-    position: 'relative',
-    bottom: 40,
+  submitButton: {
+    backgroundColor: '#015d68',
+    padding: 15,
+    borderRadius: 5,
+    marginTop: 20,
   },
-  loginLbl: {
-    color: '#000',
-    fontSize: 20,
-    marginBottom:10,
-    textAlign:'center',
-    fontFamily:'Medium',
-    marginTop:15,
-    //fontFamily: Fonts.type.NotoSansExtraBold,
+  submitText: {
+    color: '#fff',
+    textAlign: 'center',
+    fontWeight: 'bold',
   },
-  forgotDes: {
-    position: 'relative',
-    bottom: 35,
-  },
-  forgotDesLbl: {
-    color: '#000',
-   // fontFamily: Fonts.type.NotoSansRegular,
-  },
-  //registerLbl: {color: '#0057ff', fontFamily: Fonts.type.NotoSansSemiBold},
 
 
-registerLbl:{
-  // backgroundColor:'black',
-  // marginTop:70,
-  // paddingVertical:10,
-  // paddingHorizontal:40,
-  // borderRadius:8,
-   color:'white',
-  // borderColor:'green',
-  // borderWidth:1,
-  marginRight:20,
-
-
+  dateRow: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  marginBottom: 10,
+},
+dateInput: {
+  flex: 1,
+  marginRight: 10,
+  //color:'white',
+},
+dateTextreg:{
+  color:'white',
 },
 
+dropdownBox: {
+  padding: 12,
+  backgroundColor: 'rgba(0,0,0,0)',
+  borderRadius: 8,
+  borderColor: 'white',
+  borderWidth: 1,
+  marginBottom: 10,
+},
+dropdownText: {
+  color: 'white',
+},
+dropdownList: {
+  //maxHeight: 150,
+  //backgroundColor: '#015d68',
+  borderRadius: 8,
+  elevation: 4,
+  //Zindex:1,
+  color: 'white',
+  paddingHorizontal:10,
+},
+dropdownItem: {
+  padding: 10,
+  // borderBottomColor: 'red',
+  // borderBottomWidth: 1,
+  color: 'white',
 
-
-
-   textinput: {
-        color: COLORS.white,
-        //fontSize: SIZES.h3,
-        // borderBottomColor: COLORS.lightGrey,
-        borderColor: COLORS.green,
-        borderWidth: 1,
-        paddingVertical: 10,
-        marginHorizontal: 15,
-        marginVertical: 5,
-        padding:10,
-        borderRadius:8,
-        fontFamily:'Light',
-
-        borderWidth:2,
-        borderColor:'black',
-    },
-
-
-
-    dataContainerForPassword: {
-      color: COLORS.white,
-        fontSize: SIZES.h3,
-        // borderBottomColor: COLORS.lightGrey,
-        borderColor: COLORS.green,
-        borderWidth: 1,
-        paddingVertical: 10,
-        marginHorizontal: 15,
-        marginVertical: 10,
-        marginTop: 50,
-        padding:10,
-        borderRadius:8,
-        width:width-100,
-        flexDirection:'row',
-        justifyContent:'space-between',
-        flex:1,
-
-        borderWidth:2,
-        borderColor:'black',
-        
-         
-    },
-
-  
-    textinputi: {
-        color: COLORS.white,
-        //fontSize: SIZES.h3,
-        fontFamily:'Light',
-        
-        
-        marginHorizontal: 0,
-        
-        padding:0,
-        
-    },
+},
+phoneInputContainer: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  borderColor: '#ccc',
+  borderWidth: 1,
+  borderRadius: 8,
+  paddingHorizontal: 10,
+  backgroundColor: '#fff',
+},
+prefix: {
+  fontSize: 16,
+  color: '#555',
+},
+phoneInput: {
+  flex: 1,
+  paddingVertical: 10,
+  paddingLeft: 10,
+  color: '#000',
+},
 
 
  checkboxContainer: {
@@ -990,6 +713,7 @@ registerLbl:{
     //fontSize: 16,
     fontFamily: 'Light',
   },
+
 
 
 

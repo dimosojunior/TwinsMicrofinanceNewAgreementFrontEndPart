@@ -283,6 +283,8 @@ const [dropdownVisible2, setDropdownVisible2] = useState(false);
 
                   </View>
 
+
+
          
 
                   <DrawerItemList {...props} />
@@ -290,6 +292,83 @@ const [dropdownVisible2, setDropdownVisible2] = useState(false);
 
 
             
+                     {userData && userData.is_admin === true && (
+                   <TouchableOpacity
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                padding: 10,
+                marginLeft:15,
+              }}
+              onPress={() => setDropdownVisible2(!dropdownVisible2)}
+            >
+              <FontAwesome name="user" size={20} color="white" />
+              <Text style={{ color: "white", 
+              marginLeft: 30, fontFamily: "Light" 
+            }}>
+                Vikundi
+              </Text>
+            </TouchableOpacity>
+            )}
+
+
+{userData && userData.is_admin === true && (
+  <>
+ {dropdownVisible2 && (
+              <View style={{ 
+                marginLeft: 80,
+
+                 }}>
+                <TouchableOpacity
+                  onPress={() => {
+                    setDropdownVisible2(false);
+                    navigation.navigate("Signup Stack"); // Navigate to first option
+                  }}
+                >
+                  <Text style={{ color: "white", marginVertical: 8 }}>
+                    Weka Taarifa za Vikundi
+                  </Text>
+                </TouchableOpacity>
+
+                  <TouchableOpacity
+                  onPress={() => {
+                    setDropdownVisible2(false);
+                    navigation.navigate("Ongeza Kituo"); // Navigate to first option
+                  }}
+                >
+                  <Text style={{ color: "white", marginVertical: 8 }}>
+                    Ongeza Kikundi
+                  </Text>
+                </TouchableOpacity>
+
+
+                   <TouchableOpacity
+                   
+                  // onPress={() => {
+                  //   setDropdownVisible2(false);
+                  //   Linking.openURL(WebsiteLink);
+                  //   //navigation.navigate("Faini Za Leo"); // Navigate to first option
+                  // }}
+
+                  onPress={() => {
+                    setDropdownVisible2(false);
+                    navigation.navigate("Vituo Vilivyosajiliwa"); // Navigate to first option
+                  }}
+
+                >
+                  <Text style={{ color: "white", marginVertical: 8 }}>
+                    Vikundi vyote
+                  </Text>
+                </TouchableOpacity>
+
+                
+               
+              </View>
+            )}
+</>
+)}
+
+
               
 
 <View style={{

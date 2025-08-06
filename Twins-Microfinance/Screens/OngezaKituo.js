@@ -27,7 +27,8 @@ import LotterViewScreen from '../Screens/LotterViewScreen';
 const {width,height} = Dimensions.get('window');
 const OngezaKituo = ({ navigation }) => {
 
- 
+ const [loadingTime, setLoadingTime] = useState(0);
+
 
   let [fontsLoaded] = useFonts({
     
@@ -94,6 +95,11 @@ const [isPending2, setPending2] =useState(true);
   const [JinaLaKituo, setJinaLaKituo] = useState('');
   const [password2, setPassword2] = useState('');
 
+const [Mahali, setMahali] = useState('');
+  const [ManagerWaKituoFullName, setManagerWaKituoFullName] = useState('');
+  const [ManagerWaKituoMobileNumber, setManagerWaKituoMobileNumber] = useState('');
+const [MsaidiziWaKituoFullName, setMsaidiziWaKituoFullName] = useState('');
+const [MsaidiziWaKituoMobileNumber, setMsaidiziWaKituoMobileNumber] = useState('');
   //const [phone, setPhone] = useState('');
   //const [profile_image, setProfile_image] = useState('');
 
@@ -133,9 +139,18 @@ const handleErrorMessage = (error) => {
 
     if (!JinaLaKituo) {
      // setError('please enter your JinaLaKituo');
-      showAlertFunction("Tafadhali ingiza jina la kituo unachosajili");
+      showAlertFunction("Tafadhali jaza jina la kikundi unachosajili");
       return;
     }
+
+
+  if (!Mahali) {
+     // setError('please enter your JinaLaKituo');
+      showAlertFunction("Tafadhali jaza sehemu kikundi kilipo");
+      return;
+    }
+
+  
 
   
 
@@ -146,7 +161,12 @@ const handleErrorMessage = (error) => {
       const response = await axios.post(
         EndPoint + '/OngezaKituoView/', {
         
-        JinaLaKituo: JinaLaKituo
+        JinaLaKituo: JinaLaKituo,
+        Mahali: Mahali,
+        ManagerWaKituoFullName:ManagerWaKituoFullName,
+        ManagerWaKituoMobileNumber:ManagerWaKituoMobileNumber,
+        MsaidiziWaKituoFullName:MsaidiziWaKituoFullName,
+        MsaidiziWaKituoMobileNumber:MsaidiziWaKituoMobileNumber,
         
         
       });
@@ -160,7 +180,12 @@ const handleErrorMessage = (error) => {
     
   setPending(false);
   //setEmail('');
+  setManagerWaKituoFullName('');
+  setManagerWaKituoMobileNumber('');
+  setMsaidiziWaKituoFullName('');
+  setMsaidiziWaKituoMobileNumber('');
   setJinaLaKituo('');
+  setMahali('');
  
   
 
@@ -185,210 +210,113 @@ const handleErrorMessage = (error) => {
     }
   };
 
-    return(
-
-        <>{!fontsLoaded ? (<View/>):(
-
-     <>
+  
+  return (
 
 
- {!isPending2 ? (
+    <>{!fontsLoaded ? (<View/>):(
+
+     
 
 
-       
-
+<LinearGradient colors={['#015d68', '#000']} style={globalStyles.container}>
+   
       
-       <KeyboardAvoidingView style={styles.mainCon}>
-
-       <MinorHeader />
-        <ScrollView 
-        keyboardShouldPersistTaps="handled"
-        >
-
-      
-        <View style={{position: 'relative',
-         bottom: 30,
-         marginTop:50,
-       }}>
-
-
-       
-          <View style={{
-         bottom: 10,
-         //marginTop:50,
-         justifyContent:'center',
-         alignItems:'center',
-       }}>
-           <Image
-
-          style={{
-            width:60,
-            height:60,
-            borderRadius:50,
-          }}
-           source={require('../assets/icon.png')} 
-          >
-         </Image>
-
-         </View>
-
-
-        <View style={{position: 'relative', bottom: 30}}>
-          <View style={styles.loginIcon}>
-            {/*<SvgIcon icon={'enterOtp'} width={280} height={280} />*/}
-       
-          </View>
-          <View style={styles.container}>
-              <View style={styles.loginLblCon}>
-              <Text style={styles.loginLbl}>Treasure Microfinance</Text>
-            </View>
-
-
-            <View style={styles.forgotDes}>
-              <Text style={styles.forgotDesLbl}>
-               Sajili kituo kipya
-              </Text>
-           {/*   <Text style={styles.forgotDesLbl}>+91 1234567890</Text>*/}
-            </View>
-            <View style={styles.formCon}>
-
-            {/*  <OTPInputView
-               // pinCount={4}
-                autoFocusOnLoad
-                style={{width: '80%', height: 70}}
-                
-               
-              />*/}
+{isPending && (
+  <View style={globalStyles.loaderOverlay}>
+    <View style={globalStyles.loaderContent}>
+      <ActivityIndicator size="large" color="#fff" />
+      <Text style={globalStyles.loaderText}>Sajili kituo</Text>
+      <Text style={globalStyles.loaderCounter2}>tafadhali subiri....</Text>
+    </View>
+  </View>
+)}
 
 
 
 
+         <MinorHeader />
+
+         <Text
+style={globalStyles.AppChaguaHudumaTextHomeScreen}  
+
+>Sajili Kikundi kipya</Text>
+
+    <ScrollView 
+    keyboardShouldPersistTaps="handled"
+    style={styles.container}>
 
 
-                 {/*  mwanzo wa JinaLaKituo*/}
-            <View 
-            style={[styles.dataContainerForPassword, 
-              {
-                 width:width-20,
-                marginTop:0,
-              }
-
-              ]}
-          >
-
-            <View style={{
-          width:'10%',
-          //justifyContent:"center",
-         // backgroundColor:'red',
-        }}>
-
-         {/* Add a button to toggle password visibility */}
-        <TouchableOpacity
-          
-          style={{ 
-            alignSelf: 'flex-start', 
-            marginRight: 0,color:'black',
-            flexDirection:'row',
-            alignItems:'center',
-             }}
-          >
-
-          <FontAwesome size={25} color="green" name="user-circle" />
-
-        {/*  <Text style={{
-           color: 'black', 
-           fontSize: 16,
-           fontWeight:'bold',
-           marginLeft:10,
-            }}>
-            +255
-          </Text>*/}
-        </TouchableOpacity>
-
-        </View>
+      <Text style={styles.label}>Jina La Kikundi</Text>
+      <TextInput value={JinaLaKituo} 
+      onChangeText={setJinaLaKituo} 
+      placeholder="jina la kikundi" 
+      placeholderTextColor="wheat"
+      style={styles.input} 
+      />
 
 
-          <TextInput
-          style= {[styles.textinputi,{ 
-            color: 'black',width:'88%',
-            //backgroundColor:'black',
+ <Text style={styles.label}>Mahali Kikundi kilipo</Text>
+      <TextInput value={Mahali} 
+      onChangeText={setMahali} 
+      placeholder="mahali" 
+      placeholderTextColor="wheat"
+      style={styles.input} 
+      />
 
-            //paddingVertical:20,
-          }]}
-          placeholder="Jina la kituo"
-          //keyboardType="numeric"
-          
-          value={JinaLaKituo}
-          onChangeText={setJinaLaKituo}
-        placeholderTextColor="black"
-        />
+  <Text style={styles.label}>Jina Kamili La Meneja Wa Kikundi</Text>
+      <TextInput value={ManagerWaKituoFullName} 
+      onChangeText={setManagerWaKituoFullName} 
+      placeholder="manager wa Kikundi" 
+      placeholderTextColor="wheat"
+      style={styles.input} 
+      />
 
-      
-        </View>
-      {/*  mwisho wa JinaLaKituo*/}
+
+<Text style={styles.label}>Namba Ya Simu Meneja Wa Kikundi</Text>
+      <TextInput value={ManagerWaKituoMobileNumber} 
+      onChangeText={setManagerWaKituoMobileNumber} 
+      placeholder="Namba ya simu ya manager " 
+      placeholderTextColor="wheat"
+      keyboardType="numeric"
+      style={styles.input} 
+      />
 
 
 
-
-            {!isPending && (
-              <Pressable 
-              style={{
-                flexDirection:'row',
-                justifyContent:'space-between',
-                alignItems:'center',
-                  backgroundColor:'green',
-                  marginTop:50,
-                  paddingVertical:10,
-                  paddingHorizontal:40,
-                  borderRadius:8,
-                  color:'white',
-                  borderColor:'white',
-                  borderWidth:1,
-               // backgroundColor:'black'
-              }}
-              onPress={handleRegistration}>
-                <Text style={styles.registerLbl}>Sajili kituo</Text>
-                 <Ionicons name='arrow-forward-circle' 
-                size={28}
-                color='white' 
-                style={{
-                 // marginTop:70,
-                }} 
-                
-                 />
-              </Pressable>
-              )}
+<Text style={styles.label}>Jina Kamili La Msaidizi Wa Kikundi</Text>
+      <TextInput value={MsaidiziWaKituoFullName} 
+      onChangeText={setMsaidiziWaKituoFullName} 
+      placeholder="msaidizi wa Kikundi" 
+      placeholderTextColor="wheat"
+      style={styles.input} 
+      />
 
 
-
-
-           {isPending &&
-                         <View style={styles.btnContainer}>
-                        <TouchableOpacity 
-                        
-                        >
-                            <View style={styles.button1}>
-                               
-                             <ActivityIndicator size="large" color="green" /> 
-                            </View>
-                        </TouchableOpacity>
-                     
-                    </View>}
+<Text style={styles.label}>Namba Ya Simu Msaidizi Wa Kikundi</Text>
+      <TextInput value={MsaidiziWaKituoMobileNumber} 
+      onChangeText={setMsaidiziWaKituoMobileNumber} 
+      placeholder="Namba ya simu ya msaidizi " 
+      placeholderTextColor="wheat"
+      keyboardType="numeric"
+      style={styles.input} 
+      />
 
 
 
 
 
-            
-            </View>
-          </View>
-        </View>
+
+  
+
+      <TouchableOpacity onPress={handleRegistration} style={styles.submitButton}>
+        <Text style={styles.submitText}>Sajili Kituo</Text>
+      </TouchableOpacity>
 
 
 
 
-
-               <AwesomeAlert
+         <AwesomeAlert
                 show={showAlert}
                 showProgress={false}
                 // title="Overdose Stores"
@@ -404,168 +332,119 @@ const handleErrorMessage = (error) => {
                 customView={
                   <View style={globalStyles.alertContent}>
                     <Image source={require('../assets/icon.png')} style={globalStyles.alertImage} />
-                    <Text style={globalStyles.alertTitle}>Gegwajo Microfinance</Text>
+                    <Text style={globalStyles.alertTitle}>Twins Microfinance</Text>
                     <Text style={globalStyles.alertMessage}>{alertMessage}</Text>
                   </View>
                 }
               />
+      
+
+<View style={{
+  marginBottom:100,
+}}>
+  {/*<Text style={{
+    color:'white',
+  }}>Vuta juu</Text>*/}
+</View>
 
 
-        </View>
 
-</ScrollView>
-      </KeyboardAvoidingView>
-
-     
-               ):(
-
-<LotterViewScreen />
-
-)}
-
-    
-
-    </>
+    </ScrollView>
 
 
-         )}</>
-    )
+ </LinearGradient> 
+
+
+
+
+
+
+
+
+
+     )}</>
+
+
+
+
+
+  );
 }
 
 export default OngezaKituo;
 
 
 
-
 const styles = StyleSheet.create({
-  mainCon: {
-    backgroundColor: 'white',
-    flex: 1,
+  container: { padding: 16 },
+  label: { 
+    fontWeight: 'bold',
+     marginTop: 12 ,
+     marginBottom:10,
+     color:'white',
+   },
+  input: {
+    borderWidth: 1,
+    borderColor: 'white',
+    padding: Platform.OS === 'ios' ? 10 : 5,
+    marginBottom: 10,
+    borderRadius: 5,
+    color:'wheat',
   },
-  loginIcon: {
-    alignSelf: 'center',
+  suggestion: {
+    padding: 10,
+    backgroundColor: '#eee',
+    borderBottomWidth: 1,
+    borderColor: 'white',
   },
-  formCon: {
-    alignItems: 'center',
-  },
-  container: {
-    paddingHorizontal: 20,
-    marginTop: 50,
-  },
-  loginLblCon: {
-    position: 'relative',
-    bottom: 40,
-  },
-  loginLbl: {
-    color: '#000',
-    fontSize: 20,
-    marginBottom:10,
-    textAlign:'center',
-    fontFamily:'Medium',
-    marginTop:15,
-    //fontFamily: Fonts.type.NotoSansExtraBold,
-  },
-  forgotDes: {
-    position: 'relative',
-    bottom: 35,
-  },
-  forgotDesLbl: {
-    color: '#000',
-   // fontFamily: Fonts.type.NotoSansRegular,
-  },
-  //registerLbl: {color: '#0057ff', fontFamily: Fonts.type.NotoSansSemiBold},
-
-
-registerLbl:{
-  // backgroundColor:'black',
-  // marginTop:70,
-  // paddingVertical:10,
-  // paddingHorizontal:40,
-  // borderRadius:8,
-   color:'white',
-  // borderColor:'green',
-  // borderWidth:1,
-  marginRight:20,
-
-
-},
-
-
-
-
-   textinput: {
-        color: COLORS.white,
-        //fontSize: SIZES.h3,
-        // borderBottomColor: COLORS.lightGrey,
-        borderColor: COLORS.green,
-        borderWidth: 1,
-        paddingVertical: 10,
-        marginHorizontal: 15,
-        marginVertical: 5,
-        padding:10,
-        borderRadius:8,
-        fontFamily:'Light',
-
-        borderWidth:2,
-        borderColor:'black',
-    },
-
-
-
-    dataContainerForPassword: {
-      color: COLORS.white,
-        fontSize: SIZES.h3,
-        // borderBottomColor: COLORS.lightGrey,
-        borderColor: COLORS.green,
-        borderWidth: 1,
-        paddingVertical: 10,
-        marginHorizontal: 15,
-        marginVertical: 10,
-        marginTop: 50,
-        padding:10,
-        borderRadius:8,
-        width:width-100,
-        flexDirection:'row',
-        justifyContent:'space-between',
-        flex:1,
-
-        borderWidth:2,
-        borderColor:'black',
-        
-         
-    },
-
-  
-    textinputi: {
-        color: COLORS.white,
-        //fontSize: SIZES.h3,
-        fontFamily:'Light',
-        
-        
-        marginHorizontal: 0,
-        
-        padding:0,
-        
-    },
-
-
- checkboxContainer: {
-    width: '100%',
-    marginBottom: 20,
-    //backgroundColor:'red',
-    marginTop:20,
-  },
-  checkboxRow: {
+  row: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 10,
+  },
+  picker: {
+    flex: 1,
+    height: 50,
+    marginHorizontal: 3,
+    color:'white',
+    //backgroundColor:'white',
+  },
+  genderButton: {
+    flex: 1,
+    padding: 10,
     alignItems: 'center',
-    marginBottom: 20,
+    marginRight: 10,
+    backgroundColor: '#ddd',
+    borderRadius: 5,
   },
-  checkboxLabel: {
-    marginLeft: 8,
-    //fontSize: 16,
-    fontFamily: 'Light',
+  selectedGender: {
+    backgroundColor: '#aaa',
+  },
+  submitButton: {
+    backgroundColor: '#015d68',
+    padding: 15,
+    borderRadius: 5,
+    marginTop: 20,
+  },
+  submitText: {
+    color: '#fff',
+    textAlign: 'center',
+    fontWeight: 'bold',
   },
 
 
+  dateRow: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  marginBottom: 10,
+},
+dateInput: {
+  flex: 1,
+  marginRight: 10,
+  //color:'white',
+},
+dateTextreg:{
+  color:'white',
+},
 
 });

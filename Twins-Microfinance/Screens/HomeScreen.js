@@ -47,7 +47,7 @@ const contents = [
 
 const contents2 = [
   { id: '1', title: 'Vikundi', icon: 'users', screen: 'Vituo Vilivyosajiliwa' },
-  { id: '2', title: 'Wafanyakazi', icon: 'user', screen: 'Empty Screen' },
+  { id: '2', title: 'Wafanyakazi', icon: 'user', screen: 'Wafanyakazi Wote' },
   { id: '6', title: 'Mishahara', icon: 'user-circle', screen: 'Empty Screen' },
 ];
 
