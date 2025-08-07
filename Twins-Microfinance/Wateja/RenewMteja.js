@@ -322,7 +322,7 @@ console.log("KiasiAnachokopa", KiasiAnachokopa);
 
     
 
-     if (JinaKamiliLaMteja) {
+        if (JinaKamiliLaMteja) {
             formData.append('JinaKamiliLaMteja', JinaKamiliLaMteja);
         } else {
             showAlertFunction('Tafadhali ingiza jina la mteja ?');
@@ -399,11 +399,13 @@ console.log("KiasiAnachokopa", KiasiAnachokopa);
           // Validate phone number
   if (!SimuYaMteja.startsWith("0")) {
     showAlertFunction("Namba ya simu lazima ianze na 0");
+    setIsLoading(false);
     return;
   }
 
   if (SimuYaMteja.length !== 10) {
     showAlertFunction("Namba ya simu lazima iwe na tarakimu 10");
+    setIsLoading(false);
     return;
   }
 
@@ -411,11 +413,13 @@ console.log("KiasiAnachokopa", KiasiAnachokopa);
            // Validate phone number
   if (!SimuYaMzaminiWa1.startsWith("0")) {
     showAlertFunction("Namba ya simu lazima ianze na 0");
+    setIsLoading(false);
     return;
   }
 
   if (SimuYaMzaminiWa1.length !== 10) {
     showAlertFunction("Namba ya simu lazima iwe na tarakimu 10");
+    setIsLoading(false);
     return;
   }
 
@@ -423,11 +427,13 @@ console.log("KiasiAnachokopa", KiasiAnachokopa);
            // Validate phone number
   if (SimuYaMzaminiWa2 && !SimuYaMzaminiWa2.startsWith("0")) {
     showAlertFunction("Namba ya simu lazima ianze na 0");
+    setIsLoading(false);
     return;
   }
 
   if (SimuYaMzaminiWa2 && SimuYaMzaminiWa2.length !== 10) {
     showAlertFunction("Namba ya simu lazima iwe na tarakimu 10");
+    setIsLoading(false);
     return;
   }
 
@@ -440,14 +446,14 @@ console.log("KiasiAnachokopa", KiasiAnachokopa);
             return;
         }
 
-            if (BiasharaYaMteja) {
+
+           if (BiasharaYaMteja) {
             formData.append('BiasharaYaMteja', BiasharaYaMteja);
         } else {
             showAlertFunction('Tafadhali jaza kazi/biashara anayofanya mteja');
             setIsLoading(false);
             return;
         }
-
 
 
 
@@ -498,7 +504,7 @@ console.log("KiasiAnachokopa", KiasiAnachokopa);
         //     });
         // }
 
-      
+       
 
 
 

@@ -62,23 +62,23 @@ useEffect(() => {
 
   const [onboardings, setOnboardings] = useState([
     {
-      Title:'Connect the Agriculture Chain',
-      Description:'Unlock seamless interaction between farmers, buyers, transporters, and more. AgriHub brings everyone in agriculture under one smart platform. Grow your network and boost productivity from farm to market. It’s time to simplify agricultural coordination like never before',
+      Title:'Simamia Mikopo kwa Ufanisi – Popote Ulipo',
+      Description:'Pata mfumo bora wa kudhibiti mikopo, wateja, marejesho, faini na ripoti kwa urahisi. Iwe ni mteja mpya au wa zamani, kila hatua ya mkopo inasimamiwa kwa usahihi. Hakuna tena kuhangaika na kumbukumbu zisizo sahihi — kila kitu kiko kwenye mfumo',
       OnboardingLotterView:require('../assets/Loading/1.json'), 
       OnboardingImage:require('../assets/3.jpg'), 
       id:'1'
     },
     {
-      Title:'Empower Farmers, Simplify Trade',
-      Description:'Farmers can easily register and showcase their produce anytime. Buyers and collectors access fresh produce directly from the source. No middlemen, no confusion — just smart, transparent trading. AgriHub gives power back to the hands that feed the nation',
+      Title:'Mfumo Mahiri kwa Biashara ya Microfinance',
+      Description:'Fuatilia mikataba hai, marejesho ya kila siku, na taarifa za wateja kwa wakati halisi. Tengeneza ripoti za kifedha kwa kila kituo na fahamu maendeleo ya biashara yako. Ufanisi, uwazi na kasi ya utendaji vipo mikononi mwako sasa.',
      OnboardingLotterView:require('../assets/Loading/2.json'), 
      OnboardingImage:require('../assets/2.jpg'),  
       id:'2'},
     {
-      Title:'Real-Time Orders & Smart Logistics',
-       Description:'Manage pickups, deliveries, and orders all in one place. Track your produce from farm to collection center and beyond. Get real-time updates and ensure timely, secure transactions. AgriHub brings efficiency and trust to every agricultural deal',
+      Title:'Kopesha kwa Kujiamini – Kidigitali',
+       Description:'Tumia teknolojia kuboresha huduma zako za mikopo kwa usalama na ufanisi. Weka kumbukumbu zote kwa njia ya kisasa: kutoka kwa usajili hadi malipo. App hii ni msaada wako bora katika kuongeza wateja na kupunguza upotevu.',
      OnboardingLotterView:require('../assets/Loading/3.json'), 
-     OnboardingImage:require('../assets/1.jpg'), 
+     OnboardingImage:require('../assets/4.jpg'), 
       id:'3'
     },
  
@@ -245,7 +245,7 @@ const [currentSlideIndex, setCurrentSlideIndex] = React.useState(0);
            
               <TouchableOpacity
                 style={styles.getstarted2}
-               // onPress={() => navigation.replace('Signin Stack')}
+                //onPress={() => navigation.replace('Signin Stack')}
                 onPress={() => setModalVisible(true)}
                >
                 
@@ -355,7 +355,7 @@ renderItem = {({item}) => <Slide item={item}/>}
               <AntDesign name="closecircle" size={24} color="red" />
             </TouchableOpacity>
 
-            <Text style={styles.modalTitle}>✅ AgriHub Tanzania – Terms and Conditions</Text>
+            <Text style={styles.modalTitle}>✅  Twins Microfinance – Terms and Conditions</Text>
            
            <ScrollView keyboardShouldPersistTaps="handled">
          <View style={{
@@ -366,30 +366,29 @@ renderItem = {({item}) => <Slide item={item}/>}
               fontWeight:'bold',
 
             }]}>
-              Welcome to AgriHub Tanzania!
+              Karibu Twins Microfinance!
             </Text>
 
             
+ <Text style={styles.modalText2}>
+      Kwa kutumia Twins Microfinance, unakubali kutumia app hii kwa shughuli halali tu za kifedha, ikiwemo usimamizi wa mikopo na marejesho. 
+      Unapaswa kutoa taarifa sahihi wakati wa usajili na kutumia mfumo kwa uadilifu.
+    </Text>
 
-              <Text style={styles.modalText2}>
-              By using AgriHub Tanzania, you agree to use the app responsibly for agricultural-related activities only. 
-              You must provide accurate information during registration and avoid posting harmful or misleading content. 
-             
-                 </Text>
+    <Text style={styles.modalText2}>
+      Taarifa zako binafsi, pamoja na taarifa za kifedha za wateja, zinalindwa na hazitashirikishwa bila idhini yako, isipokuwa pale inapolazimishwa na sheria.
+      Twins Microfinance haitoajibika kwa hasara yoyote inayotokana na matumizi mabaya ya mfumo huu.
+    </Text>
 
-               <Text style={styles.modalText2}>
-                    Your personal data is protected and will not be shared without your permission, unless required by law. AgriHub is not responsible for any loss from transactions between users. All content you upload remains yours, but we may display it on the platform. 
-  
-                 </Text>
+    <Text style={styles.modalText2}>
+      Tunaweza kusitisha au kufuta akaunti yako ikiwa utatumia mfumo kinyume cha sheria au masharti haya.
+      Kuendelea kutumia app kunamaanisha unakubali mabadiliko yoyote ya baadaye kwenye sera hii.
+      Kwa maswali, wasiliana nasi kupitia support@twinsmicrofinance.com.
+    </Text>
 
-                   <Text style={styles.modalText2}>
-       We may suspend or terminate your account for any misuse. Continued use of the app means you accept any updates we make to these terms. AgriHub is not liable for any damages caused by use of the platform. If you have questions, contact us at support@agrihub.co.tz. 
-            
-                 </Text>
-
-              <Text style={styles.modalText2}>
-                By clicking ✅ , you agree to these terms and conditions.
-            </Text>
+           <Text style={styles.modalText2}>
+      Kwa kubonyeza ✅ , unakubali vigezo na masharti haya.
+    </Text>
             </View>
             </ScrollView>
 
@@ -411,7 +410,7 @@ renderItem = {({item}) => <Slide item={item}/>}
               <Text style={{ 
                 marginLeft: 10,
                 color:'wheat',
-               }}>I understand and agree</Text>
+               }}>Nimeelewa na Nimekubali</Text>
             </View>
 
             {isChecked && (
@@ -419,7 +418,7 @@ renderItem = {({item}) => <Slide item={item}/>}
                 onPress={() => navigation.replace('Signin Stack')}
                 style={styles.getstarted}
               >
-                <Text style={{ color: 'white', fontSize: 16 }}>GET STARTED</Text>
+                <Text style={{ color: 'white', fontSize: 16 }}>INGIA</Text>
                 <Ionicons name="arrow-forward-circle" size={24} color="white" />
               </TouchableOpacity>
             )}

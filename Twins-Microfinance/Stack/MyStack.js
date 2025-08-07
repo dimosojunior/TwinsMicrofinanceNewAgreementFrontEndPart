@@ -67,6 +67,11 @@ import Empty from '../Screens/Empty';
 import WafanyakaziWote from '../Screens/WafanyakaziWote';
 import ViewMfanyakazi from '../Screens/ViewMfanyakazi';
 
+import AddRipoti from '../Screens/AddRipoti';
+import AngaliaRipotiYaKilaSiku from '../Screens/AngaliaRipotiYaKilaSiku';
+
+import WelcomeScreen from '../Screens/WelcomeScreen';
+
 
 const Stack = createStackNavigator();
 
@@ -102,7 +107,7 @@ function MyStack( {navigation}){
 
   return (
 
-  //isAppFirstLaunched != null &&(
+  isAppFirstLaunched != null &&(
   //kama unatumia drawer navigator na stack navigator haina haja ya kus
   //sorround hii stack.navigator na NavigationContainer ila km unatumia
   //stack navigation peke yake basi tumia NavigationContainer
@@ -133,6 +138,16 @@ function MyStack( {navigation}){
       //     })}
       />
 */}
+
+{isAppFirstLaunched && (
+       <Stack.Screen
+      name="Welcome Screen"
+      component={WelcomeScreen}
+      // options={ () => ({ 
+      //       headerLeft: () => <Header  title='About Page' />,
+      //     })}
+      />
+)}
 
 
  <Stack.Screen
@@ -419,6 +434,27 @@ function MyStack( {navigation}){
 
 
 
+       <Stack.Screen
+      name="Add Ripoti"
+      component={AddRipoti}
+      // options={ () => ({ 
+      //       headerLeft: () => <Header  title='About Page' />,
+      //     })}
+      />
+
+
+          <Stack.Screen
+      name="Angalia Ripoti"
+      component={AngaliaRipotiYaKilaSiku}
+      // options={ () => ({ 
+      //       headerLeft: () => <Header  title='About Page' />,
+      //     })}
+      />
+
+
+
+
+
 
  
 
@@ -426,6 +462,9 @@ function MyStack( {navigation}){
       //	</NavigationContainer>
 
   
+      ) 
+//bano la kufunga if is first launched
+
 
     );
   }

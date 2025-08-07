@@ -691,7 +691,7 @@ const TableRowComponent = ({ item}) => {
           </TouchableOpacity>
 
 
-
+{userData && userData.is_admin === true && (
           <TouchableOpacity
          onPress={() => navigation.navigate("Taarifa Za Vituo")}
            
@@ -726,6 +726,8 @@ const TableRowComponent = ({ item}) => {
               Taarifa za vituo
             </Text>
           </TouchableOpacity>
+
+          )}
           
 
         </Pressable>

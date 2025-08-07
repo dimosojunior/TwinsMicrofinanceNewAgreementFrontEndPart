@@ -519,10 +519,20 @@ const TableRowComponent = ({ item}) => {
         style={[
           globalStyles.cell,
           globalStyles.buttoncolumn,
-          { justifyContent: 'center', alignItems: 'center' },
+          { justifyContent: 'space-between', 
+          alignItems: 'center',
+          flexDirection:'row' , 
+        },
         ]}
         onPress={() => handlePressPokeaMarejesho(item)}
       >
+      {item.Amerejesha_Leo === true ? (
+       <FontAwesome name="check" size={20} color="#fff" />
+       ):(
+
+      <FontAwesome name="close" size={20} color="#fff" />
+
+      )}
         <MaterialCommunityIcons
           name="gesture-tap-button"
           size={30}

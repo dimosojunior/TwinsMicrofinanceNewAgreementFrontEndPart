@@ -355,12 +355,20 @@ style={globalStyles.AppChaguaHudumaTextHomeScreen}
       placeholderTextColor="wheat"
       style={styles.input} />*/}
   
-   <Text style={styles.label}>Jina la kuingilia</Text>
-      <TextInput value={username} onChangeText={setUsername} 
-      style={styles.input}
-      placeholder="username" 
-      placeholderTextColor="wheat"
-       />
+  
+<Text style={styles.label}>Jina la kuingilia</Text>
+  <View style={styles.inputContainer}>
+      <FontAwesome name="user" size={20} color="#fff" style={styles.icon} />
+      <TextInput 
+          style={styles.input} 
+          placeholder="jina"
+          placeholderTextColor="#bbb"
+          //secureTextEntry={secureText}
+          value={username}
+       onChangeText={(text) => setUsername(text)}
+      />
+      
+  </View>
 
   
 {/* Password Field */}
@@ -370,7 +378,7 @@ style={globalStyles.AppChaguaHudumaTextHomeScreen}
       <TextInput 
           style={styles.input} 
           placeholder="neno siri"
-          placeholderTextColor="wheat"
+          placeholderTextColor="#bbb"
           secureTextEntry={secureText}
           value={password}
        onChangeText={(text) => setPassword(text)}
@@ -388,7 +396,7 @@ style={globalStyles.AppChaguaHudumaTextHomeScreen}
       <TextInput 
           style={styles.input} 
           placeholder="Rudia neno siri"
-          placeholderTextColor="wheat"
+          placeholderTextColor="#bbb"
           secureTextEntry={secureText}
           value={password2}
        onChangeText={(text) => setPassword2(text)}
@@ -453,7 +461,7 @@ style={globalStyles.AppChaguaHudumaTextHomeScreen}
 
 
 <Text style={{
-  color:'green',
+  color:'wheat',
   marginLeft:0,
 }}>Weka tiki sehemu sahihi kutokana na taarifa ulizojaza hapo juu</Text>
 
@@ -508,8 +516,8 @@ style={globalStyles.AppChaguaHudumaTextHomeScreen}
 
 
 
-      <TouchableOpacity onPress={handleSubmit} style={styles.submitButton}>
-        <Text style={styles.submitText}>Submit</Text>
+      <TouchableOpacity onPress={handleRegistration} style={styles.submitButton}>
+        <Text style={styles.submitText}>Kusanya</Text>
       </TouchableOpacity>
 
 
@@ -712,9 +720,52 @@ phoneInput: {
     marginLeft: 8,
     //fontSize: 16,
     fontFamily: 'Light',
+    color:'white',
   },
 
 
+  inputContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: '#333',
+        borderRadius: 10,
+        paddingHorizontal: 15,
+        paddingVertical: 10,
+        marginBottom: 15,
+        width: '100%',
+        // borderColor:'white',
+        // borederWidth:1,
+    },
+    icon: {
+        marginRight: 10,
+    },
+    input: {
+        flex: 1,
+        fontSize: 16,
+        color: '#fff',
 
+    },
+    loginButton: {
+        // backgroundColor: '#007AFF',
+        //backgroundColor: '#0c9b56',
+        backgroundColor:'#015d68',
+        paddingVertical: 12,
+        borderRadius: 10,
+        alignItems: 'center',
+        width: '100%',
+    },
+    loginText: {
+        color: '#fff',
+        fontSize: 18,
+        fontWeight: 'bold',
+    },
+    loadingOverlay: {
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    },
 
 });

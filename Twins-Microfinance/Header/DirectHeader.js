@@ -66,7 +66,7 @@ const GoHome = () => {
           </TouchableOpacity>
 
           <Text style={{fontSize:20,
-            fontFamily:"Regular",color:'black'}}>MICROFINANCE</Text>
+            fontFamily:"Regular",color:'black'}}>Fasta 💰 Finance</Text>
          <TouchableOpacity 
            onPress={GoHome}
           >

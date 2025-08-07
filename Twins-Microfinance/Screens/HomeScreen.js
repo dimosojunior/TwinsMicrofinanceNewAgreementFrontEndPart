@@ -39,16 +39,18 @@ const contents = [
   { id: '4', title: 'Faini', icon: 'user-times', screen: 'Faini Za Leo' },
   { id: '5', title: 'Nje Ya Mkataba Leo', icon: 'user-times', screen: 'Nje Ya Mkataba Leo' },
   { id: '6', title: 'Nje Ya Mkataba Wote', icon: 'user-secret', screen: 'Nje Ya Mkataba Wote' },
-  { id: '7', title: 'Hawajakopa Tena', icon: 'user-o', screen: 'Wamemaliza Hawajakopa Tena' },
-
-  { id: '8', title: 'Report Summary', icon: 'bar-chart', screen: 'Ripoti Ya Siku' },
+  
+{ id: '7', title: 'Andaa Report', icon: 'bar-chart', screen: 'Add Ripoti' },
+  { id: '8', title: 'Report Summary', icon: 'line-chart', screen: 'Ripoti Ya Siku' },
+  { id: '9', title: 'Report Ya Siku', icon: 'area-chart', screen: 'Angalia Ripoti' },
+{ id: '10', title: 'Hawajakopa Tena', icon: 'user-o', screen: 'Wamemaliza Hawajakopa Tena' },
 
 ];
 
 const contents2 = [
   { id: '1', title: 'Vikundi', icon: 'users', screen: 'Vituo Vilivyosajiliwa' },
   { id: '2', title: 'Wafanyakazi', icon: 'user', screen: 'Wafanyakazi Wote' },
-  { id: '6', title: 'Mishahara', icon: 'user-circle', screen: 'Empty Screen' },
+  { id: '3', title: 'Mishahara', icon: 'user-circle', screen: 'Empty Screen' },
 ];
 
 const groupIntoRows = (data, itemsPerRow = 3) => {
@@ -75,6 +77,47 @@ export default function HomeScreen({ navigation }) {
 });
 
 
+
+
+// kwaajili ya kupata taarifa za aliyelogin
+const [userData, setUserData] = useState({});
+  const [userToken, setUserToken] = useState('');
+
+  useEffect(() => {
+    AsyncStorage.getItem("userToken").then(token => {
+      setUserToken(token)
+    })
+    fetchUserData();
+  }, [userData]);
+
+  const fetchUserData = async () => {
+    try {
+      const userDataJSON = await AsyncStorage.getItem('userData');
+      if (userDataJSON) {
+        const parsedUserData = JSON.parse(userDataJSON);
+        setUserData(parsedUserData);
+
+        //console.log(parsedUserData);
+        //console.log(userDataJSON);
+      }
+    } catch (error) {
+      // console.log(error);
+    }
+  };
+
+
+ useEffect(() => {
+    checkLoggedIn();
+
+
+  }, [userToken]);
+
+  const checkLoggedIn = async () => {
+    const token = await AsyncStorage.getItem('userToken');
+    setUserToken(token);
+  };
+
+
   const [dateTime, setDateTime] = useState({ date: '', time: '' });
 
   useEffect(() => {
@@ -87,6 +130,37 @@ export default function HomeScreen({ navigation }) {
     }, 1000);
     return () => clearInterval(intervalId);
   }, []);
+
+
+
+
+// Filter contents2 to include item with id '5' only if user is admin or transporter
+// const filteredContents1 = contents.filter(item => {
+//   if ((item.id === '8') || (item.id === '9')) {
+//     return userData?.cashier === true || userData?.is_admin === true;
+//   }
+//   return true; // Allow all other items
+// });
+const filteredContents1 = contents.filter(item => {
+  if (item.id === '8')  {
+    return userData?.is_admin === true;
+  }
+  return true; // Allow all other items
+});
+
+
+
+const filteredContents2 = contents2.filter(item => {
+  if (item.id === '2') {
+    return userData?.is_admin === true;
+  }
+  return true; // Allow all other items
+});
+
+
+
+
+
 
   if (!fontsLoaded) return <View />;
 
@@ -112,7 +186,7 @@ export default function HomeScreen({ navigation }) {
       <ScrollView contentContainerStyle={styles.contentContainer}>
         <Text style={styles.sectionTitle}>Mikopo</Text>
         <Text style={styles.sectionDesc}>Pata fursa za mikopo na uwekezaji kwa urahisi</Text>
-        {groupIntoRows(contents).map((row, rowIndex) => (
+        {groupIntoRows(filteredContents1).map((row, rowIndex) => (
           <View key={rowIndex} style={styles.cardRow}>
             {row.map((item) => (
               <TouchableOpacity
@@ -132,7 +206,7 @@ export default function HomeScreen({ navigation }) {
 
         <Text style={styles.sectionTitle}>Mishahara Na Wafanyakazi</Text>
         <Text style={styles.sectionDesc}>Chagua huduma inayokufaa kutoka kwenye orodha yetu</Text>
-        {groupIntoRows(contents2).map((row, rowIndex) => (
+        {groupIntoRows(filteredContents2).map((row, rowIndex) => (
           <View key={rowIndex} style={styles.cardRow}>
             {row.map((item) => (
               <TouchableOpacity

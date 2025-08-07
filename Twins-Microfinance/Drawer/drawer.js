@@ -60,7 +60,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import { UserContext } from '../UserContext';
 
 //import Scan from '../Screens/Scan';
-
+import WelcomeScreen from '../Screens/WelcomeScreen';
 
 const { width, height } = Dimensions.get('window');
 const Drawer = createDrawerNavigator();
@@ -524,7 +524,7 @@ const [dropdownVisible2, setDropdownVisible2] = useState(false);
 
 
 
-   {/*  <Drawer.Screen
+  {/*   <Drawer.Screen
           name="Welcome"
           options={{
             drawerLabel: "Welcome",

@@ -345,11 +345,13 @@ const handleRegistration = async () => {
           // Validate phone number
   if (!SimuYaMteja.startsWith("0")) {
     showAlertFunction("Namba ya simu lazima ianze na 0");
+    setIsLoading(false);
     return;
   }
 
   if (SimuYaMteja.length !== 10) {
     showAlertFunction("Namba ya simu lazima iwe na tarakimu 10");
+    setIsLoading(false);
     return;
   }
 
@@ -357,11 +359,13 @@ const handleRegistration = async () => {
            // Validate phone number
   if (!SimuYaMzaminiWa1.startsWith("0")) {
     showAlertFunction("Namba ya simu lazima ianze na 0");
+    setIsLoading(false);
     return;
   }
 
   if (SimuYaMzaminiWa1.length !== 10) {
     showAlertFunction("Namba ya simu lazima iwe na tarakimu 10");
+    setIsLoading(false);
     return;
   }
 
@@ -369,11 +373,13 @@ const handleRegistration = async () => {
            // Validate phone number
   if (SimuYaMzaminiWa2 && !SimuYaMzaminiWa2.startsWith("0")) {
     showAlertFunction("Namba ya simu lazima ianze na 0");
+    setIsLoading(false);
     return;
   }
 
   if (SimuYaMzaminiWa2 && SimuYaMzaminiWa2.length !== 10) {
     showAlertFunction("Namba ya simu lazima iwe na tarakimu 10");
+    setIsLoading(false);
     return;
   }
 

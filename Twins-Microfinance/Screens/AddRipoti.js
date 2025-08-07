@@ -231,112 +231,67 @@ const handleRegistration = async () => {
         
         if (FomuNaBima) {
             formData.append('FomuNaBima', FomuNaBima);
-        } else {
-            showAlertFunction('Tafadhali ingiza kiasi cha fomu na bima ?');
-            setIsLoading(false);
-            return;
-        }
+        } 
 
 
 
          if (ImetokaKituoJirani) {
             formData.append('ImetokaKituoJirani', ImetokaKituoJirani);
-        } else {
-            showAlertFunction('Tafadhali ingiza kiasi cha pesa kilichotoka kituo jirani au andika 0');
-            setIsLoading(false);
-            return;
-        }
+        } 
 
              if (Mkopo) {
             formData.append('Mkopo', Mkopo);
-        } else {
-            showAlertFunction('Tafadhali ingiza kiasi cha mkopo au andika 0 ');
-            setIsLoading(false);
-            return;
-        }
+        } 
 
            if (Posho) {
             formData.append('Posho', Posho);
-        } else {
-            showAlertFunction('Tafadhali ingiza kiasi cha posho au andika 0 ');
-            setIsLoading(false);
-            return;
-        }
+        } 
 
-              if (MatumiziMengine) {
-            formData.append('MatumiziMengine', MatumiziMengine);
-        } else {
-            showAlertFunction('Tafadhali ingiza kiasi cha Matumizi mengine au andika 0 ');
-            setIsLoading(false);
-            return;
-        }
+
+
+        if (MatumiziMengine) {
+      formData.append('MatumiziMengine', MatumiziMengine);
+        } 
+
+
 
            if (IdadiYaMikopoYaLeo) {
             formData.append('IdadiYaMikopoYaLeo', IdadiYaMikopoYaLeo);
-        } else {
-            showAlertFunction('Tafadhali ingiza idadi ya mikopo iliyotolewa leo au andika 0 ');
-            setIsLoading(false);
-            return;
-        }
-
+        } 
 
 
 
           if (ImeendaKituoJirani) {
             formData.append('ImeendaKituoJirani', ImeendaKituoJirani);
-        } else {
-            showAlertFunction('Tafadhali ingiza kiasi cha pesa iliyoenda kituo jirani au andika 0 ');
-            setIsLoading(false);
-            return;
-        }
+        } 
+
 
 
           if (KituoIlichoendaHela) {
             formData.append('KituoIlichoendaHela', KituoIlichoendaHela);
-        } else {
-            showAlertFunction('Tafadhali andika jina la kituo kilichoenda pesa ');
-            setIsLoading(false);
-            return;
-        }
+        } 
 
            if (KituoIlichotokaHela) {
             formData.append('KituoIlichotokaHela', KituoIlichotokaHela);
-        } else {
-            showAlertFunction('Tafadhali andika jina la kituo  pesa ilipotoka ');
-            setIsLoading(false);
-            return;
-        }
-
+        } 
 
 
 
           if (ImeendaKwaBosi) {
             formData.append('ImeendaKwaBosi', ImeendaKwaBosi);
-        } else {
-            showAlertFunction('Tafadhali ingiza kiasi cha pesa kilichoenda kwa bosi au andika 0 ');
-            setIsLoading(false);
-            return;
-        }
+        } 
+
 
 
           if (ImetokaKwaBosi) {
             formData.append('ImetokaKwaBosi', ImetokaKwaBosi);
-        } else {
-            showAlertFunction('Tafadhali ingiza kiasi cha pesa kilichotoka kwa bosi au andika 0 ');
-            setIsLoading(false);
-            return;
-        }
+        } 
 
 
 
         if (IdadiYaMikatabaMipyaLeo) {
             formData.append('IdadiYaMikatabaMipyaLeo', IdadiYaMikatabaMipyaLeo);
-        } else {
-            showAlertFunction('Tafadhali ingiza idadi ya mikataba mipya leo au andika 0 ');
-            setIsLoading(false);
-            return;
-        }
-
+        } 
         // Ongeza picha kwenye `FormData` tu kama imechaguliwa
         // if (PichaYaMteja) {
         //     formData.append('PichaYaMteja', {
@@ -434,7 +389,7 @@ const handleRegistration = async () => {
           </View>
           <View style={styles.container}>
             <View style={styles.loginLblCon}>
-              <Text style={styles.loginLbl}>Treasure Microfinance</Text>
+              <Text style={styles.loginLbl}>Twins Microfinance</Text>
             </View>
 
 
@@ -443,7 +398,7 @@ const handleRegistration = async () => {
 
             <View style={styles.forgotDes}>
               <Text style={styles.forgotDesLbl}>
-                Jaza ripoti ya leo 
+                Jaza Ripoti ya leo 
               </Text>
            {/*   <Text style={styles.forgotDesLbl}>+91 1234567890</Text>*/}
             </View>
@@ -478,7 +433,7 @@ const handleRegistration = async () => {
 
           ]}>
             <Text style={globalStyles.TaxTypeAddNewProject}>
-                 Kituo
+                 Kikundi
             </Text>
 
      <View style={globalStyles.picker}>
@@ -1433,7 +1388,7 @@ Endelea
   flex:1,
 }}>
   <Text style={{
-    color:'black',
+    color:'white',
     fontFamily:'Medium',
   }}>
      Umefanikiwa kuandaa ripoti ya leo kikamilifu.
@@ -1441,7 +1396,7 @@ Endelea
 
    <TouchableOpacity 
    onPress={() => {
-   navigation.navigate("Ripoti Ya Siku");
+   navigation.navigate("Angalia Ripoti");
   }}
      style={styles.ButtonContainerUpdate}>
   <Text style={styles.ButtonTextUpdate}>Angalia Ripoti</Text>
@@ -1468,8 +1423,8 @@ Endelea
                 contentContainerStyle={globalStyles.alertContainer}
                 customView={
                   <View style={globalStyles.alertContent}>
-                    <Image source={require('../assets/i2.jpg')} style={globalStyles.alertImage} />
-                    <Text style={globalStyles.alertTitle}>Gegwajo Microfinance</Text>
+                    <Image source={require('../assets/icon.png')} style={globalStyles.alertImage} />
+                    <Text style={globalStyles.alertTitle}>Twins Microfinance</Text>
                     <Text style={globalStyles.alertMessage}>{alertMessage}</Text>
                   </View>
                 }
@@ -1644,6 +1599,22 @@ registerLbl:{
         
         padding:0,
         
+    },
+
+    ButtonTextUpdate:{
+      color: "white" ,
+      // padding:13,
+       backgroundColor: "#015d68",
+       borderColor:'white',
+       borderWidth:1,
+       textAlign:'center',
+       borderRadius:8,
+       width:'100%',
+       fontFamily:'Light',
+       paddingVertical:10,
+       marginTop:20,
+       paddingHorizontal:10,
+
     },
 
 

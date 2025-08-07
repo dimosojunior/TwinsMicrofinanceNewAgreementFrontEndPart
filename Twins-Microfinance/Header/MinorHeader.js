@@ -96,7 +96,7 @@ const GoHome = () => {
 
          <Text style={{fontSize:16,
             fontFamily:"Regular",
-            color:'white'}}>{greeting}</Text>
+            color:'white'}}>Fasta 💰 Finance</Text>
          <TouchableOpacity 
            onPress={GoHome}
           >
