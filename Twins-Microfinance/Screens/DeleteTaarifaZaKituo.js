@@ -380,7 +380,7 @@ keyboardShouldPersistTaps="handled"
                 customView={
                   <View style={globalStyles.alertContent}>
                     <Image source={require('../assets/icon.png')} style={globalStyles.alertImage} />
-                    <Text style={globalStyles.alertTitle}>Gegwajo Microfinance</Text>
+                    <Text style={globalStyles.alertTitle}>Twins Microfinance</Text>
                     <Text style={globalStyles.alertMessage}>{alertMessage}</Text>
                   </View>
                 }

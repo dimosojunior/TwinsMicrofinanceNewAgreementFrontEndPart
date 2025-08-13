@@ -72,6 +72,12 @@ import AngaliaRipotiYaKilaSiku from '../Screens/AngaliaRipotiYaKilaSiku';
 
 import WelcomeScreen from '../Screens/WelcomeScreen';
 
+import OngezaBranch from '../Screens/OngezaBranch';
+import AllBranches from '../Screens/AllBranches';
+import DeleteBranch from '../Screens/DeleteBranch';
+
+import TaarifaZaBranches from '../Screens/TaarifaZaBranches';
+import DeleteTaarifaZaBranch from '../Screens/DeleteTaarifaZaBranch';
 
 const Stack = createStackNavigator();
 
@@ -451,6 +457,54 @@ function MyStack( {navigation}){
       //     })}
       />
 
+
+
+
+
+          <Stack.Screen
+      name="Ongeza Branch"
+      component={OngezaBranch}
+      // options={ () => ({ 
+      //       headerLeft: () => <Header  title='About Page' />,
+      //     })}
+      />
+
+
+
+          <Stack.Screen
+      name="All Branches"
+      component={AllBranches}
+      // options={ () => ({ 
+      //       headerLeft: () => <Header  title='About Page' />,
+      //     })}
+      />
+
+
+           <Stack.Screen
+      name="Delete Branch"
+      component={DeleteBranch}
+      // options={ () => ({ 
+      //       headerLeft: () => <Header  title='About Page' />,
+      //     })}
+      />
+
+
+        <Stack.Screen
+      name="Taarifa Za Branches"
+      component={TaarifaZaBranches}
+      // options={ () => ({ 
+      //       headerLeft: () => <Header  title='About Page' />,
+      //     })}
+      />
+
+
+    <Stack.Screen
+      name="Delete Taarifa Za Branch"
+      component={DeleteTaarifaZaBranch}
+      // options={ () => ({ 
+      //       headerLeft: () => <Header  title='About Page' />,
+      //     })}
+      />
 
 
 

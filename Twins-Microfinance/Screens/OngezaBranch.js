@@ -25,7 +25,7 @@ import {Picker} from '@react-native-picker/picker';
 import LotterViewScreen from '../Screens/LotterViewScreen';
 
 const {width,height} = Dimensions.get('window');
-const OngezaKituo = ({ navigation }) => {
+const OngezaBranch = ({ navigation }) => {
 
  const [loadingTime, setLoadingTime] = useState(0);
 
@@ -59,29 +59,6 @@ const OngezaKituo = ({ navigation }) => {
 const [isPending2, setPending2] =useState(true);
 
 
-// State variable to store the RoomClasses data
-  const [BranchName, setBranchName] = useState([]);
- const [selectedBranchName, setSelectedBranchName] = useState(null);
- 
-  // Fetch Universities
-  useEffect(() => {
-   // setPending2(true);
-    fetch(`${EndPoint}/Add/AllBranchesViewSet/`)
-      .then((response) => response.json())
-      .then((data) => {
-        setBranchName(data);
-       // setPending2(false);
-        
-        // Set the default selectedRoomClass if needed
-        //setSelectedRoomClass(data[0]); // For example, set the first RoomClass as default
-      })
-      .catch((error) => {
-       // setPending2(false);
-        //console.error('Error fetching Product categories:', error);
-        //showAlertFunction("Error fetching Universities");
-      });
-  }, []);
-
 
 
   //console.log("Push Token Again", pushToken);
@@ -92,14 +69,20 @@ const [isPending2, setPending2] =useState(true);
   //const {width,height} = Dimensions.get('window');
   //const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [JinaLaKituo, setJinaLaKituo] = useState('');
+  const [BranchName, setBranchName] = useState('');
   const [password2, setPassword2] = useState('');
 
 const [Mahali, setMahali] = useState('');
-  const [ManagerWaKituoFullName, setManagerWaKituoFullName] = useState('');
-  const [ManagerWaKituoMobileNumber, setManagerWaKituoMobileNumber] = useState('');
-const [MsaidiziWaKituoFullName, setMsaidiziWaKituoFullName] = useState('');
-const [MsaidiziWaKituoMobileNumber, setMsaidiziWaKituoMobileNumber] = useState('');
+
+  const [ManagerWaBranchFullName, setManagerWaBranchFullName] = useState('');
+  const [ManagerWaBranchMobileNumber, setManagerWaBranchMobileNumber] = useState('');
+const [MsaidiziWaBranchFullName, setMsaidiziWaBranchFullName] = useState('');
+const [MsaidiziWaBranchMobileNumber, setMsaidiziWaBranchMobileNumber] = useState('');
+  
+
+const [CashierWaBranchFullName, setCashierWaBranchFullName] = useState('');
+const [CashierWaBranchMobileNumber, setCashierWaBranchMobileNumber] = useState('');
+ 
   //const [phone, setPhone] = useState('');
   //const [profile_image, setProfile_image] = useState('');
 
@@ -137,25 +120,33 @@ const handleErrorMessage = (error) => {
   
 
 
-    if (!JinaLaKituo) {
-     // setError('please enter your JinaLaKituo');
-      showAlertFunction("Tafadhali jaza jina la kikundi unachosajili");
+    if (!BranchName) {
+     // setError('please enter your BranchName');
+      showAlertFunction("Tafadhali jaza jina la Branch");
       return;
     }
 
 
-     if (!selectedBranchName) {
+    //  if (!selectedBranchName) {
         
-        showAlertFunction("Tafadhali chagua Branch unayosajili kikundi");
-         return;
-    } 
+    //     showAlertFunction("Tafadhali chagua Branch unayosajili kikundi");
+    //      return;
+    // } 
 
 
   if (!Mahali) {
-     // setError('please enter your JinaLaKituo');
-      showAlertFunction("Tafadhali jaza sehemu kikundi kilipo");
+     // setError('please enter your BranchName');
+      showAlertFunction("Tafadhali jaza sehemu Branch ilipo");
       return;
     }
+
+
+   if (!ManagerWaBranchFullName) {
+     // setError('please enter your BranchName');
+      showAlertFunction("Tafadhali jaza jina la Branch manager");
+      return;
+    }
+
 
   
 
@@ -166,15 +157,18 @@ const handleErrorMessage = (error) => {
 
     try {
       const response = await axios.post(
-        EndPoint + '/OngezaKituoView/', {
+        EndPoint + '/OngezaBranchView/', {
         
-        JinaLaKituo: JinaLaKituo,
-        BranchName:selectedBranchName,
+        BranchName: BranchName,
+        //BranchName:selectedBranchName,
         Mahali: Mahali,
-        ManagerWaKituoFullName:ManagerWaKituoFullName,
-        ManagerWaKituoMobileNumber:parseInt(ManagerWaKituoMobileNumber),
-        MsaidiziWaKituoFullName:MsaidiziWaKituoFullName,
-        MsaidiziWaKituoMobileNumber:parseInt(MsaidiziWaKituoMobileNumber),
+        ManagerWaBranchFullName:ManagerWaBranchFullName,
+        ManagerWaBranchMobileNumber:parseInt(ManagerWaBranchMobileNumber),
+        MsaidiziWaBranchFullName:MsaidiziWaBranchFullName,
+        MsaidiziWaBranchMobileNumber:parseInt(MsaidiziWaBranchMobileNumber),
+
+        CashierWaBranchFullName:CashierWaBranchFullName,
+        CashierWaBranchMobileNumber:parseInt(CashierWaBranchMobileNumber),
         
         
       });
@@ -188,12 +182,15 @@ const handleErrorMessage = (error) => {
     
   setPending(false);
   //setEmail('');
-  setManagerWaKituoFullName('');
-  setManagerWaKituoMobileNumber('');
-  setMsaidiziWaKituoFullName('');
-  setMsaidiziWaKituoMobileNumber('');
-  setJinaLaKituo('');
+  setManagerWaBranchFullName('');
+  setManagerWaBranchMobileNumber('');
+  setMsaidiziWaBranchFullName('');
+  setMsaidiziWaBranchMobileNumber('');
+  setBranchName('');
   setMahali('');
+
+  setCashierWaBranchFullName('');
+  setCashierWaBranchMobileNumber('');
  
   
 
@@ -203,18 +200,19 @@ const handleErrorMessage = (error) => {
 
 
 
-} catch (error) {
-  if (error.response) {
-    console.log("Status:", error.response.status);
-    console.log("Data:", error.response.data); // Hii itakuonyesha error kutoka serializer
-    console.log("Headers:", error.response.headers);
-  } else {
-    console.log("Error Message:", error.message);
-  }
-}
 
-
-
+    } catch (error) {
+      if (error.response) {
+       
+         console.log("ERRRORR", error);
+      } else {
+        console.log("ERRRORR", error);
+        //setError('Registration error. Please try again later.');
+        //showAlertFunction("Registration error. Please try again later.");
+        handleErrorMessage(error);
+        setPending(false);
+      }
+    }
   };
 
   
@@ -233,7 +231,7 @@ const handleErrorMessage = (error) => {
   <View style={globalStyles.loaderOverlay}>
     <View style={globalStyles.loaderContent}>
       <ActivityIndicator size="large" color="#fff" />
-      <Text style={globalStyles.loaderText}>Sajili kikundi</Text>
+      <Text style={globalStyles.loaderText}>Sajili Branch</Text>
       <Text style={globalStyles.loaderCounter2}>tafadhali subiri....</Text>
     </View>
   </View>
@@ -256,58 +254,10 @@ style={globalStyles.AppChaguaHudumaTextHomeScreen}
 
 
 
-  {/*  mwanzo wa picker*/}
- <View style={{ marginTop: 0 ,
-  marginBottom:30,
- }}>
-        
-
-        < View style={[globalStyles.inputTax,
-          {
-            backgroundColor:'black',
-            marginHorizontal:0,
-            width:'100%',
-          }
-
-          ]}>
-            <Text style={globalStyles.TaxTypeAddNewProject}>
-                 Branch
-            </Text>
-
-     <View style={globalStyles.picker}>
-
-            
-      
-          <Picker
-    selectedValue={selectedBranchName}
-    onValueChange={(itemValue) => setSelectedBranchName(itemValue)}
-    >
-        {BranchName.map((x) => (
-            <Picker.Item 
-            key={x.id} 
-            label={x.BranchName} 
-            value={x.id} 
-            />
-        ))}
-    </Picker>
-
-         </View>
-          
-        </View>    
-          
-        
-    </View>
-
-  {/*  mwisho wa picker*/}
-
-
-
-
-
-      <Text style={styles.label}>Jina La Kikundi</Text>
-      <TextInput value={JinaLaKituo} 
-      onChangeText={setJinaLaKituo} 
-      placeholder="jina la kikundi" 
+      <Text style={styles.label}>Jina La Branch</Text>
+      <TextInput value={BranchName} 
+      onChangeText={setBranchName} 
+      placeholder="jina la branch" 
       placeholderTextColor="wheat"
       style={styles.input} 
       />
@@ -321,18 +271,18 @@ style={globalStyles.AppChaguaHudumaTextHomeScreen}
       style={styles.input} 
       />
 
-  <Text style={styles.label}>Jina Kamili La Meneja Wa Kikundi</Text>
-      <TextInput value={ManagerWaKituoFullName} 
-      onChangeText={setManagerWaKituoFullName} 
-      placeholder="manager wa Kikundi" 
+  <Text style={styles.label}>Jina Kamili La Meneja Wa Branch</Text>
+      <TextInput value={ManagerWaBranchFullName} 
+      onChangeText={setManagerWaBranchFullName} 
+      placeholder="manager wa Branch" 
       placeholderTextColor="wheat"
       style={styles.input} 
       />
 
 
-<Text style={styles.label}>Namba Ya Simu Meneja Wa Kikundi</Text>
-      <TextInput value={ManagerWaKituoMobileNumber} 
-      onChangeText={setManagerWaKituoMobileNumber} 
+<Text style={styles.label}>Namba Ya Simu Meneja Wa Branch</Text>
+      <TextInput value={ManagerWaBranchMobileNumber} 
+      onChangeText={setManagerWaBranchMobileNumber} 
       placeholder="Namba ya simu ya manager " 
       placeholderTextColor="wheat"
       keyboardType="numeric"
@@ -341,19 +291,40 @@ style={globalStyles.AppChaguaHudumaTextHomeScreen}
 
 
 
-<Text style={styles.label}>Jina Kamili La Msaidizi Wa Kikundi</Text>
-      <TextInput value={MsaidiziWaKituoFullName} 
-      onChangeText={setMsaidiziWaKituoFullName} 
-      placeholder="msaidizi wa Kikundi" 
+<Text style={styles.label}>Jina Kamili La Msaidizi Wa Branch</Text>
+      <TextInput value={MsaidiziWaBranchFullName} 
+      onChangeText={setMsaidiziWaBranchFullName} 
+      placeholder="Afisa mikopo" 
       placeholderTextColor="wheat"
       style={styles.input} 
       />
 
 
-<Text style={styles.label}>Namba Ya Simu Msaidizi Wa Kikundi</Text>
-      <TextInput value={MsaidiziWaKituoMobileNumber} 
-      onChangeText={setMsaidiziWaKituoMobileNumber} 
-      placeholder="Namba ya simu ya msaidizi " 
+<Text style={styles.label}>Namba Ya Simu Msaidizi Wa Branch</Text>
+      <TextInput value={MsaidiziWaBranchMobileNumber} 
+      onChangeText={setMsaidiziWaBranchMobileNumber} 
+      placeholder="Namba ya simu ya Afisa mikopo " 
+      placeholderTextColor="wheat"
+      keyboardType="numeric"
+      style={styles.input} 
+      />
+
+
+
+<Text style={styles.label}>Jina Kamili la Cashier Wa Branch</Text>
+      <TextInput value={CashierWaBranchFullName} 
+      onChangeText={setCashierWaBranchFullName} 
+      placeholder="jina kamili la cashier " 
+      placeholderTextColor="wheat"
+      keyboardType="numeric"
+      style={styles.input} 
+      />
+
+
+<Text style={styles.label}>Namba Ya Simu Ya Cashier Wa Branch</Text>
+      <TextInput value={CashierWaBranchMobileNumber} 
+      onChangeText={setCashierWaBranchMobileNumber} 
+      placeholder="Namba ya simu ya cashier " 
       placeholderTextColor="wheat"
       keyboardType="numeric"
       style={styles.input} 
@@ -362,12 +333,10 @@ style={globalStyles.AppChaguaHudumaTextHomeScreen}
 
 
 
-
-
   
 
       <TouchableOpacity onPress={handleRegistration} style={styles.submitButton}>
-        <Text style={styles.submitText}>Sajili Kituo</Text>
+        <Text style={styles.submitText}>Sajili Branch</Text>
       </TouchableOpacity>
 
 
@@ -428,7 +397,7 @@ style={globalStyles.AppChaguaHudumaTextHomeScreen}
   );
 }
 
-export default OngezaKituo;
+export default OngezaBranch;
 
 
 

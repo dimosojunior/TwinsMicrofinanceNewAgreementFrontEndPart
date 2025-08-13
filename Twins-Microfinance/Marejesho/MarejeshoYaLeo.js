@@ -430,6 +430,138 @@ const [startDate, setStartDate] = useState(null);
 
 
 
+//---kwaajili ya kufilter data based on Category-------------
+
+
+// State variable to store the RoomClasses data
+// State variable to store the RoomClasses data
+const [JinaLaKituo, setJinaLaKituo] = useState([]);
+const [selectedJinaLaKituo, setSelectedJinaLaKituo] = useState(null);
+
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const token = await AsyncStorage.getItem('userToken');
+      if (token) {
+        const response = await axios.get(
+          `${EndPoint}/GetVituoVyoteForFilteringView/`,
+          {
+            headers: {
+              Authorization: `Token ${token}`,
+            },
+          }
+        );
+
+        const { JinaLaKituo } = response.data;
+        setJinaLaKituo(JinaLaKituo);
+      } else {
+        console.log("No token found");
+      }
+    } catch (error) {
+      console.log("Error fetching JinaLaKituo:", error);
+    }
+  };
+
+  fetchData();
+}, []);
+
+
+
+//---------------Hii kama akiwa hajafilter by date---
+const [selectedCategory, setSelectedCategory] = useState('all');
+
+const fetchProductsByCategory = async (JinaLaKituoId) => {
+  setPending(true);
+  try {
+    const token = await AsyncStorage.getItem('userToken');
+    let url = `${EndPoint}/FilterGetWatejaHaiWote/?page=1&page_size=500`;
+
+    if (JinaLaKituoId !== 'all') {
+      url += `&JinaLaKituo_id=${JinaLaKituoId}`;
+    }
+
+    const res = await fetch(url, {
+      headers: { Authorization: `Token ${token}` },
+    });
+    const data = await res.json();
+    setQueryset(data.queryset || []);
+    setTotalRejeshoLeo(data.total_rejesho_leo); // Set the total amount
+    setPending(false);
+  } catch (error) {
+    console.error(error);
+    setPending(false);
+  }
+};
+
+// Component ya category button
+const CategoryButton = ({ title, onPress, isActive }) => (
+  <TouchableOpacity
+    onPress={onPress}
+    style={{
+      paddingVertical: 4,
+      paddingHorizontal: 15,
+      backgroundColor: isActive ? '#71b280' : '#e0e0e0',
+      borderRadius: 20,
+      marginRight: 10,
+    }}
+  >
+    <Text style={{ color: isActive ? 'white' : 'black', fontFamily: 'Medium' }}>
+      {title}
+    </Text>
+  </TouchableOpacity>
+);
+
+//---------------mwisho hapa Hii kama akiwa hajafilter by date---
+
+
+
+
+
+//---------------Hii kama akiwa hajafilter by date---
+const [selectedCategory2, setSelectedCategory2] = useState('all');
+
+const fetchProductsByCategory2 = async (JinaLaKituoId) => {
+  setPending(true);
+  try {
+    const token = await AsyncStorage.getItem('userToken');
+    let url = `${EndPoint}/Filter_FilterMarejeshoYaSikuByDate/?startDate=${formattedStartDate}&page=1&page_size=500`;
+
+    if (JinaLaKituoId !== 'all') {
+      url += `&JinaLaKituo_id=${JinaLaKituoId}`;
+    }
+
+    const res = await fetch(url, {
+      headers: { Authorization: `Token ${token}` },
+    });
+    const data = await res.json();
+    setQueryset(data.queryset || []);
+    setTotalRejeshoLeo(data.total_rejesho_leo); // Set the total amount
+    setPending(false);
+  } catch (error) {
+    console.error(error);
+    setPending(false);
+  }
+};
+
+// Component ya category button
+const CategoryButton = ({ title, onPress, isActive }) => (
+  <TouchableOpacity
+    onPress={onPress}
+    style={{
+      paddingVertical: 4,
+      paddingHorizontal: 15,
+      backgroundColor: isActive ? '#71b280' : '#e0e0e0',
+      borderRadius: 20,
+      marginRight: 10,
+    }}
+  >
+    <Text style={{ color: isActive ? 'white' : 'black', fontFamily: 'Medium' }}>
+      {title}
+    </Text>
+  </TouchableOpacity>
+);
+
+//---------------mwisho hapa Hii kama akiwa hajafilter by date---
 
 
 // New Component for Table Row
@@ -527,6 +659,50 @@ const TableRowComponent = ({ item}) => {
 
         <LinearGradient colors={['#015d68', '#000']} style={globalStyles.container}>
           <MinorHeader />
+
+                          {/* Categories List */}
+   {!isRange ? (
+<View style={{ marginVertical: 10, marginHorizontal: 20 }}>
+  <FlatList
+    data={[{ id: 'all', JinaLaKituo: 'All' }, ...JinaLaKituo]}
+    keyExtractor={(item) => item.id.toString()}
+    horizontal
+    showsHorizontalScrollIndicator={false}
+    renderItem={({ item }) => (
+      <CategoryButton
+        title={item.JinaLaKituo}
+        isActive={selectedCategory === item.id}
+        onPress={() => {
+          setSelectedCategory(item.id);
+          fetchProductsByCategory(item.id);
+        }}
+      />
+    )}
+  />
+</View>
+ ):(
+
+ <View style={{ marginVertical: 10, marginHorizontal: 20 }}>
+  <FlatList
+    data={[{ id: 'all', JinaLaKituo: 'All' }, ...JinaLaKituo]}
+    keyExtractor={(item) => item.id.toString()}
+    horizontal
+    showsHorizontalScrollIndicator={false}
+    renderItem={({ item }) => (
+      <CategoryButton2
+        title={item.JinaLaKituo}
+        isActive={selectedCategory2 === item.id}
+        onPress={() => {
+          setSelectedCategory2(item.id);
+          fetchProductsByCategory2(item.id);
+        }}
+      />
+    )}
+  />
+</View>
+
+ )}
+
 
           <View style={{ width: '100%', marginVertical: 0 }}>
            {!isRange ? (

@@ -36,7 +36,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 const { width, height } = Dimensions.get('screen');
 
-const VituoVilivyosajiliwa = ({ navigation }) => {
+const AllBranches = ({ navigation }) => {
   const [fontsLoaded] = useFonts({
     Bold: require('../assets/fonts/Poppins-Bold.ttf'),
     Medium: require('../assets/fonts/Poppins-Medium.ttf'),
@@ -161,7 +161,7 @@ const getItems = (token) => {
     //console.log('USERTOKEN', userToken);
     //setPending(true);
     //const url = EndPoint + `/GetAllUniversities/?page=${current_page}&page_size=2`;
-   const url = EndPoint + `/GetVituoVyoteView/?page=${current_page}&page_size=500`
+   const url = EndPoint + `/GetAllBranchesView/?page=${current_page}&page_size=500`
     // console.log(url);
     fetch(url, {
       method: 'GET',
@@ -220,7 +220,7 @@ const handleRefresh = async () => {
     const token = await AsyncStorage.getItem('userToken');
     if (token) {
       // Call getItems with the token and reset page
-      const url = EndPoint + `/GetVituoVyoteView/?page=1&page_size=500`;
+      const url = EndPoint + `/GetAllBranchesView/?page=1&page_size=500`;
       const response = await fetch(url, {
         method: 'GET',
         headers: {
@@ -305,7 +305,7 @@ const handleRefresh = async () => {
 
   const handlePress = (item) => navigation.navigate('Home', { item });
   const DeletehandlePress = (item) =>
-    navigation.navigate('Delete Kituo', { ...item, postId: item.id });
+    navigation.navigate('Delete Branch', { ...item, postId: item.id });
 
 const handlePressDetailsPage = (item) =>
     navigation.navigate('Mteja Details', { ...item });
@@ -357,7 +357,7 @@ const TableRowComponent = ({ item}) => {
     <View key={item.id} style={globalStyles.row2}>
       <Text style={[globalStyles.cell, 
         globalStyles.firstNameColumn]}>
-        {item.JinaLaKituo}</Text>
+        {item.BranchName}</Text>
 
         <Text style={[globalStyles.cell, 
         globalStyles.otherColumns]}>
@@ -365,19 +365,28 @@ const TableRowComponent = ({ item}) => {
 
          <Text style={[globalStyles.cell, 
         globalStyles.otherColumns]}>
-        {item.ManagerWaKituoFullName}</Text>
+        {item.ManagerWaBranchFullName}</Text>
 
          <Text style={[globalStyles.cell, 
         globalStyles.otherColumns]}>
-        {item.ManagerWaKituoMobileNumber}</Text>
+        {item.ManagerWaBranchMobileNumber}</Text>
 
         <Text style={[globalStyles.cell, 
         globalStyles.otherColumns]}>
-        {item.MsaidiziWaKituoFullName}</Text>
+        {item.MsaidiziWaBranchFullName}</Text>
 
          <Text style={[globalStyles.cell, 
         globalStyles.otherColumns]}>
-        {item.MsaidiziWaKituoMobileNumber}</Text>
+        {item.MsaidiziWaBranchMobileNumber}</Text>
+
+
+          <Text style={[globalStyles.cell, 
+        globalStyles.otherColumns]}>
+        {item.CashierWaBranchFullName}</Text>
+
+         <Text style={[globalStyles.cell, 
+        globalStyles.otherColumns]}>
+        {item.CashierWaBranchMobileNumber}</Text>
     
 
     {userData && userData.is_admin === true && (
@@ -403,13 +412,12 @@ const TableRowComponent = ({ item}) => {
     // hili bano la chini ni la if ya juu kama mtu akitype   
 }
 
- if (item.JinaLaKituo.toLowerCase().includes(input.toLowerCase())) {
-
+ if (item.BranchName.toLowerCase().includes(input.toLowerCase())) {
   return (
     <View key={item.id} style={globalStyles.row2}>
       <Text style={[globalStyles.cell, 
         globalStyles.firstNameColumn]}>
-        {item.JinaLaKituo}</Text>
+        {item.BranchName}</Text>
 
         <Text style={[globalStyles.cell, 
         globalStyles.otherColumns]}>
@@ -417,19 +425,28 @@ const TableRowComponent = ({ item}) => {
 
          <Text style={[globalStyles.cell, 
         globalStyles.otherColumns]}>
-        {item.ManagerWaKituoFullName}</Text>
+        {item.ManagerWaBranchFullName}</Text>
 
          <Text style={[globalStyles.cell, 
         globalStyles.otherColumns]}>
-        {item.ManagerWaKituoMobileNumber}</Text>
+        {item.ManagerWaBranchMobileNumber}</Text>
 
         <Text style={[globalStyles.cell, 
         globalStyles.otherColumns]}>
-        {item.MsaidiziWaKituoFullName}</Text>
+        {item.MsaidiziWaBranchFullName}</Text>
 
          <Text style={[globalStyles.cell, 
         globalStyles.otherColumns]}>
-        {item.MsaidiziWaKituoMobileNumber}</Text>
+        {item.MsaidiziWaBranchMobileNumber}</Text>
+
+
+          <Text style={[globalStyles.cell, 
+        globalStyles.otherColumns]}>
+        {item.CashierWaBranchFullName}</Text>
+
+         <Text style={[globalStyles.cell, 
+        globalStyles.otherColumns]}>
+        {item.CashierWaBranchMobileNumber}</Text>
     
 
     {userData && userData.is_admin === true && (
@@ -563,6 +580,14 @@ const TableRowComponent = ({ item}) => {
                    <Text style={[globalStyles.cell2, 
                     globalStyles.otherColumns]}>Simu Ya Msaidizi</Text>
 
+
+                      <Text style={[globalStyles.cell2, 
+                    globalStyles.otherColumns]}>Cashier</Text>
+
+                   <Text style={[globalStyles.cell2, 
+                    globalStyles.otherColumns]}>Simu Ya Cashier</Text>
+
+
                     
 
 
@@ -691,6 +716,43 @@ const TableRowComponent = ({ item}) => {
           </TouchableOpacity>
 
 
+{userData && userData.is_admin === true && (
+          <TouchableOpacity
+         onPress={() => navigation.navigate("Taarifa Za Branches")}
+           
+            style={{
+              
+              padding: 10,
+              width:'50%',
+              borderRadius: 6,
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 10,
+            }}
+          >
+            
+            <Text style={{
+             //fontSize: 16, 
+             //fontWeight: "500", 
+             color: "white" ,
+            // padding:13,
+             backgroundColor: "#015d68",
+             borderColor:'white',
+             borderWidth:1,
+             textAlign:'center',
+             borderRadius:8,
+             width:'100%',
+             fontFamily:'Light',
+             paddingVertical:10,
+             //paddingHorizontal:20,
+
+           }}>
+              Taarifa za Branches
+            </Text>
+          </TouchableOpacity>
+
+          )}
           
 
         </Pressable>
@@ -738,4 +800,4 @@ const TableRowComponent = ({ item}) => {
   );
 };
 
-export default VituoVilivyosajiliwa;
+export default AllBranches;

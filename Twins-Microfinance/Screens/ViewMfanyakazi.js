@@ -309,7 +309,7 @@ keyboardShouldPersistTaps="handled"
 
      
 
-     {MobileNumber && (
+     {phone && (
        <Text style={globalStyles.TaarifaBinafsiSimuYaMteja}>
      Namba Ya Simu: 0{phone}    
       </Text>
@@ -317,9 +317,9 @@ keyboardShouldPersistTaps="handled"
 
     
 
-     {Email && (
+     {email && (
        <Text style={globalStyles.TaarifaBinafsiSimuYaMteja}>
-     Email: {Email}    
+     Email: {email}    
       </Text>
       )}
 

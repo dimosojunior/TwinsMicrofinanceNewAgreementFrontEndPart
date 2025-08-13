@@ -254,7 +254,23 @@ const [dropdownVisible2, setDropdownVisible2] = useState(false);
                       color: 'white'
                     }}>Karibu => {userData ? userData.username : ''}</Text>
                   
+         
+                 <Text style={{
+                      // fontSize: 18,
+                      // fontWeight: 'bold',
+                      fontFamily:'Light',
+                      color: 'wheat'
+                    }}>Branch => {userData && userData.BranchName ? userData.BranchName.BranchName : ''}</Text>
+                  
+         
+
+
               {((userData && userData.is_admin === true) || (userData && userData.is_cashier === true))  && (
+            
+
+
+
+
                     <TouchableOpacity
               style={{
                 flexDirection: "row",
@@ -319,16 +335,7 @@ const [dropdownVisible2, setDropdownVisible2] = useState(false);
                 marginLeft: 80,
 
                  }}>
-                <TouchableOpacity
-                  onPress={() => {
-                    setDropdownVisible2(false);
-                    navigation.navigate("Signup Stack"); // Navigate to first option
-                  }}
-                >
-                  <Text style={{ color: "white", marginVertical: 8 }}>
-                    Weka Taarifa za Vikundi
-                  </Text>
-                </TouchableOpacity>
+                
 
                   <TouchableOpacity
                   onPress={() => {
@@ -358,6 +365,89 @@ const [dropdownVisible2, setDropdownVisible2] = useState(false);
                 >
                   <Text style={{ color: "white", marginVertical: 8 }}>
                     Vikundi vyote
+                  </Text>
+                </TouchableOpacity>
+
+                
+               
+              </View>
+            )}
+</>
+)}
+
+
+
+
+
+
+
+            
+                     {userData && userData.is_admin === true && (
+                   <TouchableOpacity
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                padding: 10,
+                marginLeft:15,
+              }}
+              onPress={() => setDropdownVisible(!dropdownVisible)}
+            >
+              <FontAwesome name="user-o" size={20} color="white" />
+              <Text style={{ color: "white", 
+              marginLeft: 30, fontFamily: "Light" 
+            }}>
+                Branches
+              </Text>
+            </TouchableOpacity>
+            )}
+
+
+{userData && userData.is_admin === true && (
+  <>
+ {dropdownVisible && (
+              <View style={{ 
+                marginLeft: 80,
+
+                 }}>
+                <TouchableOpacity
+                  onPress={() => {
+                    setDropdownVisible(false);
+                    navigation.navigate("Signup Stack"); // Navigate to first option
+                  }}
+                >
+                  <Text style={{ color: "white", marginVertical: 8 }}>
+                    Sajili Taarifa za Branch
+                  </Text>
+                </TouchableOpacity>
+
+                  <TouchableOpacity
+                  onPress={() => {
+                    setDropdownVisible(false);
+                    navigation.navigate("Ongeza Branch"); // Navigate to first option
+                  }}
+                >
+                  <Text style={{ color: "white", marginVertical: 8 }}>
+                    Ongeza Branch
+                  </Text>
+                </TouchableOpacity>
+
+
+                   <TouchableOpacity
+                   
+                  // onPress={() => {
+                  //   setDropdownVisible2(false);
+                  //   Linking.openURL(WebsiteLink);
+                  //   //navigation.navigate("Faini Za Leo"); // Navigate to first option
+                  // }}
+
+                  onPress={() => {
+                    setDropdownVisible(false);
+                    navigation.navigate("All Branches"); // Navigate to first option
+                  }}
+
+                >
+                  <Text style={{ color: "white", marginVertical: 8 }}>
+                    Branches Zote
                   </Text>
                 </TouchableOpacity>
 

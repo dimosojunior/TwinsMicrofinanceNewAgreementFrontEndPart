@@ -1,3 +1,6 @@
+
+//JinaLaKituo
+
 import React, { useState,useCallback,useRef, useEffect } from 'react';
 import  {
   View,StyleSheet,Image,
@@ -622,7 +625,7 @@ const formatLabel = (baseLabel) => {
   borderRadius:10,
   fontFamily:'Medium',
 
-  }}>Taarifa zote za mikopo (Mikataba Hai)</Text>
+  }}>Taarifa zote za mikopo - Mikataba Hai (Branches Zote)</Text>
 </View>
 
 
@@ -725,7 +728,7 @@ const formatLabel = (baseLabel) => {
   borderRadius:10,
   fontFamily:'Medium',
 
-  }}>Taarifa za mikopo kikundi husika (Kikundi cha {userData ? userData.JinaLaKituo.JinaLaKituo : ''})</Text>
+  }}>Taarifa za mikopo Branch husika - Mikataba hai (Branch ya {userData ? userData.BranchName.BranchName : ''})</Text>
 </View>
 
 

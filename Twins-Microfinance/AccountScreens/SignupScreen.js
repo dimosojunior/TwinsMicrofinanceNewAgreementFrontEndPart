@@ -59,16 +59,16 @@ const [isPending2, setPending2] =useState(true);
 
 
 // State variable to store the RoomClasses data
-  const [JinaLaKituo, setJinaLaKituo] = useState([]);
- const [selectedJinaLaKituo, setSelectedJinaLaKituo] = useState(null);
+  const [BranchName, setBranchName] = useState([]);
+ const [selectedBranchName, setSelectedBranchName] = useState(null);
  
   // Fetch Universities
   useEffect(() => {
     setPending2(true);
-    fetch(`${EndPoint}/Add/AllVituoVyote/`)
+    fetch(`${EndPoint}/Add/AllBranchesViewSet/`)
       .then((response) => response.json())
       .then((data) => {
-        setJinaLaKituo(data);
+        setBranchName(data);
         setPending2(false);
         
         // Set the default selectedRoomClass if needed
@@ -226,13 +226,13 @@ const handleErrorMessage = (error) => {
         is_admin: isAdmin,
         is_staff: isStaff,
         is_cashier: isCashier,
-        JinaLaKituo:selectedJinaLaKituo
+        BranchName:selectedBranchName
         //Location:Location
         
       });
       //Alert.alert("You have registered Successfully");
        //showAlertFunction(expoPushToken);
-       showAlertFunction("Umefanikiwa kusajili mfanyakazi mpya");
+       showAlertFunction("Umefanikiwa kuongeza taarifa mpya ya Branch");
       //navigation.replace('Home Stack');
 
       //const token = response.data.token; // Extract the token from the response
@@ -291,15 +291,15 @@ const handleErrorMessage = (error) => {
       if (error.response) {
         if (error.response.data.email) {
          // setError('Email already exists');
-          showAlertFunction("Email uliyotumia kujisajili tayari ipo");
+          showAlertFunction("Email uliyotumia kusajilia tayari ipo");
           setPending(false);
         } else if (error.response.data.username) {
           //setError('Username already exists');
-          showAlertFunction("Jina ulilotumia kujisajili tayari lipo");
+          showAlertFunction("Jina la branch ulilotumia kusajili tayari lipo");
           setPending(false);
         }else if (error.response.data.phone) {
           //setError('Phone number already exists');
-          showAlertFunction("Namba ya simu uliyotumia kujisajili tayari ipo");
+          showAlertFunction("Namba ya simu uliyotumia kusajili tayari ipo");
           setPending(false);
         }
 
@@ -328,7 +328,7 @@ const handleErrorMessage = (error) => {
   <View style={globalStyles.loaderOverlay}>
     <View style={globalStyles.loaderContent}>
       <ActivityIndicator size="large" color="#fff" />
-      <Text style={globalStyles.loaderText}>Taarifa mpya ya kikundi</Text>
+      <Text style={globalStyles.loaderText}>Taarifa mpya ya Branch</Text>
       <Text style={globalStyles.loaderCounter2}>tafadhali subiri....</Text>
     </View>
   </View>
@@ -344,7 +344,7 @@ const handleErrorMessage = (error) => {
          <Text
 style={globalStyles.AppChaguaHudumaTextHomeScreen}  
 
->Sajili Taarifa Za Kikundi</Text>
+>Sajili Taarifa Za Branch</Text>
 
     <ScrollView 
     keyboardShouldPersistTaps="handled"
@@ -361,7 +361,7 @@ style={globalStyles.AppChaguaHudumaTextHomeScreen}
       <FontAwesome name="user" size={20} color="#fff" style={styles.icon} />
       <TextInput 
           style={styles.input} 
-          placeholder="jina"
+          placeholder="jina la kuingilia"
           placeholderTextColor="#bbb"
           //secureTextEntry={secureText}
           value={username}
@@ -426,7 +426,7 @@ style={globalStyles.AppChaguaHudumaTextHomeScreen}
 
           ]}>
             <Text style={globalStyles.TaxTypeAddNewProject}>
-                 Kikundi
+                 Branch
             </Text>
 
      <View style={globalStyles.picker}>
@@ -434,13 +434,13 @@ style={globalStyles.AppChaguaHudumaTextHomeScreen}
             
       
           <Picker
-    selectedValue={selectedJinaLaKituo}
-    onValueChange={(itemValue) => setSelectedJinaLaKituo(itemValue)}
+    selectedValue={selectedBranchName}
+    onValueChange={(itemValue) => setSelectedBranchName(itemValue)}
     >
-        {JinaLaKituo.map((x) => (
+        {BranchName.map((x) => (
             <Picker.Item 
             key={x.id} 
-            label={x.JinaLaKituo} 
+            label={x.BranchName} 
             value={x.id} 
             />
         ))}
@@ -492,7 +492,7 @@ style={globalStyles.AppChaguaHudumaTextHomeScreen}
                width:30,
                 }}
           />
-          <Text style={styles.checkboxLabel}>Ni Mtumiaji Wa Kituo ?</Text>
+          <Text style={styles.checkboxLabel}>Ni Afisa Mikopo ?</Text>
         </View>
 
         <View style={styles.checkboxRow}>
@@ -517,7 +517,7 @@ style={globalStyles.AppChaguaHudumaTextHomeScreen}
 
 
       <TouchableOpacity onPress={handleRegistration} style={styles.submitButton}>
-        <Text style={styles.submitText}>Kusanya</Text>
+        <Text style={styles.submitText}>Kusanya Taarifa</Text>
       </TouchableOpacity>
 
 

@@ -47,11 +47,11 @@ const { width, height } = Dimensions.get('screen');
 //   { id: 10, firstName: "Henry", middleName: "Tom", lastName: "Harris", age: 21, gender: "Male", phone: "012-345-6789" },
 // ];
 
-const DeleteKituo = ({navigation, route}) => {
+const DeleteTaarifaZaBranch = ({navigation, route}) => {
 
    const { 
     postId,
-    JinaLaKituo
+    username
     
    
    } = route.params
@@ -138,15 +138,15 @@ const handleDeletePost = async () => {
     //setUserToken(token);
     //console.log("USER", userToken);
     try {
-      await axios.delete(EndPoint + `/DeleteKituoView/${postId}/delete/`, {
+      await axios.delete(EndPoint + `/DeleteMyUserView/${postId}/delete/`, {
         headers: {
           Authorization: `Token ${userToken}`,
         },
       });
-      showAlertFunction('Umefanikiwa kufuta kituo');
-      navigation.replace('Vituo Vilivyosajiliwa');  // Navigate back to the previous screen
+      showAlertFunction('Umefanikiwa kufuta taarifa za Branch');
+      navigation.replace('Taarifa Za Vituo');  // Navigate back to the previous screen
     } catch (error) {
-      showAlertFunction('Imeshindikana kufuta kituo');
+      showAlertFunction('Imeshindikana kufuta taarifa za Branch');
       //console.log(error);
     }
   };
@@ -213,7 +213,7 @@ keyboardShouldPersistTaps="handled"
   borderRadius:10,
   fontFamily:'Medium',
 
-  }}>Futa kituo - {JinaLaKituo}</Text>
+  }}>Futa taarifa za Branch - {username}</Text>
 </View>
 
 
@@ -229,7 +229,7 @@ keyboardShouldPersistTaps="handled"
 <View style={globalStyles.TaarifaBinafsimkopo}>
 
  <Text style={globalStyles.TaarifaBinafsiSimuYaMtejaMkopoText}>
-     Kituo   
+     Jina la kuingilia   
       </Text>
  
       
@@ -240,7 +240,7 @@ keyboardShouldPersistTaps="handled"
     
     
        <Text style={globalStyles.TaarifaBinafsiSimuYaMtejaDeniText}>
-     {JinaLaKituo}  
+     {username}  
       </Text>
    
 
@@ -354,7 +354,7 @@ keyboardShouldPersistTaps="handled"
              paddingVertical:10,
 
            }}>
-              Futa Kituo
+              Futa Taarifa
             </Text>
           </TouchableOpacity>
           
@@ -396,7 +396,7 @@ keyboardShouldPersistTaps="handled"
   );
 };
 
-export default DeleteKituo;
+export default DeleteTaarifaZaBranch;
 
 const styles = StyleSheet.create({
  

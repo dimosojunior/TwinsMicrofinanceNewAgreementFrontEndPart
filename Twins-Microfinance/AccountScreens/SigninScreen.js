@@ -322,7 +322,7 @@ console.log("UserData Saved:", userData);
                 customView={
                   <View style={globalStyles.alertContent}>
                     <Image source={require('../assets/icon.png')} style={globalStyles.alertImage} />
-                    <Text style={globalStyles.alertTitle}>Treasure Microfinance</Text>
+                    <Text style={globalStyles.alertTitle}>Twins Microfinance</Text>
                     <Text style={globalStyles.alertMessage}>{alertMessage}</Text>
                   </View>
                 }

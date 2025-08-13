@@ -36,7 +36,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 const { width, height } = Dimensions.get('screen');
 
-const VituoVilivyosajiliwa = ({ navigation }) => {
+const TaarifaZaBranches = ({ navigation }) => {
   const [fontsLoaded] = useFonts({
     Bold: require('../assets/fonts/Poppins-Bold.ttf'),
     Medium: require('../assets/fonts/Poppins-Medium.ttf'),
@@ -161,7 +161,7 @@ const getItems = (token) => {
     //console.log('USERTOKEN', userToken);
     //setPending(true);
     //const url = EndPoint + `/GetAllUniversities/?page=${current_page}&page_size=2`;
-   const url = EndPoint + `/GetVituoVyoteView/?page=${current_page}&page_size=500`
+   const url = EndPoint + `/GetMyUserView/?page=${current_page}&page_size=500`
     // console.log(url);
     fetch(url, {
       method: 'GET',
@@ -220,7 +220,7 @@ const handleRefresh = async () => {
     const token = await AsyncStorage.getItem('userToken');
     if (token) {
       // Call getItems with the token and reset page
-      const url = EndPoint + `/GetVituoVyoteView/?page=1&page_size=500`;
+      const url = EndPoint + `/GetMyUserView/?page=1&page_size=500`;
       const response = await fetch(url, {
         method: 'GET',
         headers: {
@@ -305,7 +305,7 @@ const handleRefresh = async () => {
 
   const handlePress = (item) => navigation.navigate('Home', { item });
   const DeletehandlePress = (item) =>
-    navigation.navigate('Delete Kituo', { ...item, postId: item.id });
+    navigation.navigate('Delete Taarifa Za Branch', { ...item, postId: item.id });
 
 const handlePressDetailsPage = (item) =>
     navigation.navigate('Mteja Details', { ...item });
@@ -355,30 +355,32 @@ const TableRowComponent = ({ item}) => {
 
       return (
     <View key={item.id} style={globalStyles.row2}>
-      <Text style={[globalStyles.cell, 
-        globalStyles.firstNameColumn]}>
-        {item.JinaLaKituo}</Text>
 
-        <Text style={[globalStyles.cell, 
-        globalStyles.otherColumns]}>
-        {item.Mahali}</Text>
 
-         <Text style={[globalStyles.cell, 
-        globalStyles.otherColumns]}>
-        {item.ManagerWaKituoFullName}</Text>
+   {item && item.BranchName && item.BranchName.BranchName && (
+     <Text style={[globalStyles.cell, globalStyles.otherColumns]}>{item.BranchName.BranchName}</Text>
+    )}
 
-         <Text style={[globalStyles.cell, 
-        globalStyles.otherColumns]}>
-        {item.ManagerWaKituoMobileNumber}</Text>
+      <Text style={[globalStyles.cell, globalStyles.otherColumns]}>{item.username}</Text>
+   
+    {item && item.is_admin == true ? (
+    <Text style={[globalStyles.cell, globalStyles.otherColumns]}>Ndio</Text>
+    ):(
+  <Text style={[globalStyles.cell, globalStyles.otherColumns]}>Hapana</Text>
+    )}
 
-        <Text style={[globalStyles.cell, 
-        globalStyles.otherColumns]}>
-        {item.MsaidiziWaKituoFullName}</Text>
+     {item && item.is_cashier == true ? (
+    <Text style={[globalStyles.cell, globalStyles.otherColumns]}>Ndio</Text>
+    ):(
+  <Text style={[globalStyles.cell, globalStyles.otherColumns]}>Hapana</Text>
+    )}
 
-         <Text style={[globalStyles.cell, 
-        globalStyles.otherColumns]}>
-        {item.MsaidiziWaKituoMobileNumber}</Text>
-    
+     {item && item.is_staff == true ? (
+    <Text style={[globalStyles.cell, globalStyles.otherColumns]}>Ndio</Text>
+    ):(
+  <Text style={[globalStyles.cell, globalStyles.otherColumns]}>Hapana</Text>
+    )}
+
 
     {userData && userData.is_admin === true && (
       <TouchableOpacity
@@ -403,34 +405,36 @@ const TableRowComponent = ({ item}) => {
     // hili bano la chini ni la if ya juu kama mtu akitype   
 }
 
- if (item.JinaLaKituo.toLowerCase().includes(input.toLowerCase())) {
+ if (item.username.toLowerCase().includes(input.toLowerCase())) {
 
-  return (
+    return (
     <View key={item.id} style={globalStyles.row2}>
-      <Text style={[globalStyles.cell, 
-        globalStyles.firstNameColumn]}>
-        {item.JinaLaKituo}</Text>
 
-        <Text style={[globalStyles.cell, 
-        globalStyles.otherColumns]}>
-        {item.Mahali}</Text>
 
-         <Text style={[globalStyles.cell, 
-        globalStyles.otherColumns]}>
-        {item.ManagerWaKituoFullName}</Text>
+   {item && item.BranchName && item.BranchName.BranchName && (
+     <Text style={[globalStyles.cell, globalStyles.otherColumns]}>{item.BranchName.BranchName}</Text>
+    )}
 
-         <Text style={[globalStyles.cell, 
-        globalStyles.otherColumns]}>
-        {item.ManagerWaKituoMobileNumber}</Text>
+      <Text style={[globalStyles.cell, globalStyles.otherColumns]}>{item.username}</Text>
+   
+    {item && item.is_admin == true ? (
+    <Text style={[globalStyles.cell, globalStyles.otherColumns]}>Ndio</Text>
+    ):(
+  <Text style={[globalStyles.cell, globalStyles.otherColumns]}>Hapana</Text>
+    )}
 
-        <Text style={[globalStyles.cell, 
-        globalStyles.otherColumns]}>
-        {item.MsaidiziWaKituoFullName}</Text>
+     {item && item.is_cashier == true ? (
+    <Text style={[globalStyles.cell, globalStyles.otherColumns]}>Ndio</Text>
+    ):(
+  <Text style={[globalStyles.cell, globalStyles.otherColumns]}>Hapana</Text>
+    )}
 
-         <Text style={[globalStyles.cell, 
-        globalStyles.otherColumns]}>
-        {item.MsaidiziWaKituoMobileNumber}</Text>
-    
+     {item && item.is_staff == true ? (
+    <Text style={[globalStyles.cell, globalStyles.otherColumns]}>Ndio</Text>
+    ):(
+  <Text style={[globalStyles.cell, globalStyles.otherColumns]}>Hapana</Text>
+    )}
+
 
     {userData && userData.is_admin === true && (
       <TouchableOpacity
@@ -451,9 +455,6 @@ const TableRowComponent = ({ item}) => {
   )
 
 
-
-
-
   // hili bano la chini ni la if ya pili mwisho
   }
 
@@ -472,7 +473,7 @@ const TableRowComponent = ({ item}) => {
 
 
 
-        <LinearGradient colors={['#015d68', '#000']} style={globalStyles.container}>
+       <LinearGradient colors={['#015d68', '#000']} style={globalStyles.container}>
           <MinorHeader />
 
           <View style={{ width: '100%', marginVertical: 0 }}>
@@ -487,7 +488,7 @@ const TableRowComponent = ({ item}) => {
                 fontFamily: 'Medium',
               }}
             >
-             Vikundi Vyote
+             Taarifa Za Braches Zote
             </Text>
           </View>
 
@@ -504,7 +505,7 @@ const TableRowComponent = ({ item}) => {
               <TextInput
                 value={input}
                 onChangeText={(text) => setInput(text)}
-                placeholder="Jina la Kikundi"
+                placeholder="jina la kuingilia"
                 placeholderTextColor="black"
                 style={globalStyles.AppInputHomeScreenOtherPages}
               />
@@ -545,32 +546,19 @@ const TableRowComponent = ({ item}) => {
 
               <View style={globalStyles.table}>
                 <View style={[globalStyles.row, globalStyles.header]}>
-                  <Text style={[globalStyles.cell2, 
-                    globalStyles.firstNameColumn]}>Kikundi</Text>
+               <Text style={[globalStyles.cell2, globalStyles.otherColumns]}>Branch</Text>
+               
 
-                  <Text style={[globalStyles.cell2, 
-                    globalStyles.otherColumns]}>Mahali</Text>
+                 <Text style={[globalStyles.cell2, globalStyles.otherColumns]}>Jina la kuingilia</Text>
 
-                   <Text style={[globalStyles.cell2, 
-                    globalStyles.otherColumns]}>Manager</Text>
-
-                   <Text style={[globalStyles.cell2, 
-                    globalStyles.otherColumns]}>Simu Ya Manager</Text>
-
-                      <Text style={[globalStyles.cell2, 
-                    globalStyles.otherColumns]}>Msaidizi</Text>
-
-                   <Text style={[globalStyles.cell2, 
-                    globalStyles.otherColumns]}>Simu Ya Msaidizi</Text>
-
-                    
-
-
-
-                 {userData && userData.is_admin === true && (
-                  <Text style={[globalStyles.cell2, globalStyles.otherColumns]}>Futa</Text>
+                   <Text style={[globalStyles.cell2, globalStyles.otherColumns]}>Ni admin ?</Text>
+                     <Text style={[globalStyles.cell2, globalStyles.otherColumns]}>Ni Cashier ?</Text>
+                       <Text style={[globalStyles.cell2, globalStyles.otherColumns]}>Ni Afisa Mikopo ?</Text>
                  
-      )}
+                 {userData && userData.is_admin === true && (
+                       <Text style={[globalStyles.cell2, globalStyles.buttoncolumn]}>Futa</Text>
+                 )}
+      
                 </View>
 
                 {/* Render Table Rows */}
@@ -593,7 +581,7 @@ const TableRowComponent = ({ item}) => {
 
    ) :(
    <View style={[globalStyles.noitemTextContainer,{}]}>
-  <Text style={globalStyles.noitemText}>hukuna Taarifa
+  <Text style={globalStyles.noitemText}>hakuna Taarifa
   </Text>
 
 
@@ -631,7 +619,8 @@ const TableRowComponent = ({ item}) => {
             //backgroundColor: "white",
             position:'absolute',
             bottom:0,
-            width:'100%',
+           // width:'100%',
+           right:5,
 
           },
            
@@ -662,7 +651,7 @@ const TableRowComponent = ({ item}) => {
             style={{
               
               padding: 10,
-              width:'50%',
+              //width:'100%',
               borderRadius: 6,
               flexDirection: "row",
               alignItems: "center",
@@ -676,14 +665,15 @@ const TableRowComponent = ({ item}) => {
              //fontWeight: "500", 
              color: "white" ,
             // padding:13,
-             backgroundColor: "black",
+             backgroundColor: "#015d68",
              borderColor:'white',
              borderWidth:1,
              textAlign:'center',
              borderRadius:8,
-             width:'100%',
+             //width:'100%',
              fontFamily:'Light',
              paddingVertical:10,
+             paddingHorizontal:20,
 
            }}>
               Jumla: {JumlaYaWote}
@@ -691,7 +681,6 @@ const TableRowComponent = ({ item}) => {
           </TouchableOpacity>
 
 
-          
 
         </Pressable>
    
@@ -738,4 +727,4 @@ const TableRowComponent = ({ item}) => {
   );
 };
 
-export default VituoVilivyosajiliwa;
+export default TaarifaZaBranches;

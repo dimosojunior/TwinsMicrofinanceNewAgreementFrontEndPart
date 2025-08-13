@@ -187,15 +187,15 @@ const [KituoIlichotokaHela, setKituoIlichotokaHela] = useState('');
 
 
   // State variable to store the RoomClasses data
-  const [JinaLaKituo, setJinaLaKituo] = useState([]);
- const [selectedJinaLaKituo, setSelectedJinaLaKituo] = useState(null);
+  const [BranchName, setBranchName] = useState([]);
+ const [selectedBranchName, setSelectedBranchName] = useState(null);
  
   // Fetch Universities
   useEffect(() => {
-    fetch(`${EndPoint}/Add/AllVituoVyote/`)
+    fetch(`${EndPoint}/Add/AllBranchesViewSet/`)
       .then((response) => response.json())
       .then((data) => {
-        setJinaLaKituo(data);
+        setBranchName(data);
         //console.log("Well");
         
         // Set the default selectedRoomClass if needed
@@ -219,10 +219,10 @@ const handleRegistration = async () => {
         const formData = new FormData();
 
 
-            if (selectedJinaLaKituo) {
-          formData.append('JinaLaKituo', selectedJinaLaKituo);
+            if (selectedBranchName) {
+          formData.append('BranchName', selectedBranchName);
         } else {
-          showAlertFunction('Tafadhali chagua jina la kituo unachokijazia ripoti.');
+          showAlertFunction('Tafadhali chagua branch.');
           setIsLoading(false);
           return;
         }
@@ -433,7 +433,7 @@ const handleRegistration = async () => {
 
           ]}>
             <Text style={globalStyles.TaxTypeAddNewProject}>
-                 Kikundi
+                 Branch
             </Text>
 
      <View style={globalStyles.picker}>
@@ -454,13 +454,13 @@ const handleRegistration = async () => {
             ))}
           </Picker>*/}
           <Picker
-    selectedValue={selectedJinaLaKituo}
-    onValueChange={(itemValue) => setSelectedJinaLaKituo(itemValue)}
+    selectedValue={selectedBranchName}
+    onValueChange={(itemValue) => setSelectedBranchName(itemValue)}
     >
-        {JinaLaKituo.map((x) => (
+        {BranchName.map((x) => (
             <Picker.Item 
             key={x.id} 
-            label={x.JinaLaKituo} 
+            label={x.BranchName} 
             value={x.id} 
             />
         ))}
