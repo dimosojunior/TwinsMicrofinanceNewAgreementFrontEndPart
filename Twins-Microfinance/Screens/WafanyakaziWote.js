@@ -555,7 +555,7 @@ style={globalStyles.AppChaguaHudumaTextHomeScreen}
               <TextInput
                 value={input}
                 onChangeText={(text) => setInput(text)}
-                placeholder="jina kamili"
+                placeholder="jina analotumia"
                 placeholderTextColor="black"
                 style={globalStyles.AppInputHomeScreenOtherPages}
               />

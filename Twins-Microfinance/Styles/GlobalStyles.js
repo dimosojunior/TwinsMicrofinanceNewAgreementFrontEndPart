@@ -1,7 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text,Dimensions, View, Button,Platform } from 'react-native';
 
-
+//ProjectBodyinputoo
+//ProjectBodyInputIcon
 
 const {height, width} = Dimensions.get('window');
 
@@ -39,7 +40,13 @@ container: {
   },
 
 
+ProjectBodyinputoo:{
+  borderColor:'white',
+  borderWidth:1,
+  borderRadius:10,
+  color:'white',
 
+},
 
 //------------LOADING INDICATOR-------------
 
@@ -1306,7 +1313,7 @@ ProjectBodyInputIcon:{
   height:100,
   paddingHorizontal:10,
 
-    color: 'black',
+    color: 'white',
     fontFamily:'Light',
     width: Dimensions.get('window').width - 80,
     //backgroundColor: 'red',

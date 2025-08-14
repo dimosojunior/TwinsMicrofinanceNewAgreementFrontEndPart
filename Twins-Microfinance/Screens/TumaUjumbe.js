@@ -19,6 +19,8 @@ import * as ImagePicker from 'expo-image-picker';
 import * as FileSystem from 'expo-file-system';
 import * as DocumentPicker from 'expo-document-picker';
 import MinorHeader from '../Header/MinorHeader';
+import { LinearGradient } from 'expo-linear-gradient';
+
 
 const { width, height } = Dimensions.get('window');
 
@@ -258,7 +260,8 @@ const handleRegistration = async () => {
 
           
       
-       <KeyboardAvoidingView style={styles.mainCon}>
+       <LinearGradient colors={['#015d68', '#000']} style={globalStyles.container}>
+   
 
        <MinorHeader />
         <ScrollView 
@@ -298,7 +301,7 @@ const handleRegistration = async () => {
           </View>
           <View style={styles.container}>
             <View style={styles.loginLblCon}>
-              <Text style={styles.loginLbl}>Gegwajo Microfinance</Text>
+              <Text style={styles.loginLbl}>Twins Microfinance</Text>
             </View>
 
 
@@ -332,7 +335,7 @@ const handleRegistration = async () => {
                         <TextInput 
                         style={globalStyles.ProjectBodyInputIcon}  
                         placeholder='Andika ujumbe'
-                        placeholderTextColor="black"
+                        placeholderTextColor="white"
                         value={Message}
                     onChangeText={setMessage}
                        
@@ -427,15 +430,15 @@ const handleRegistration = async () => {
                 contentContainerStyle={globalStyles.alertContainer}
                 customView={
                   <View style={globalStyles.alertContent}>
-                    <Image source={require('../assets/i2.jpg')} style={globalStyles.alertImage} />
-                    <Text style={globalStyles.alertTitle}>Gegwajo Microfinance</Text>
+                    <Image source={require('../assets/icon.png')} style={globalStyles.alertImage} />
+                    <Text style={globalStyles.alertTitle}>Twins Microfinance</Text>
                     <Text style={globalStyles.alertMessage}>{alertMessage}</Text>
                   </View>
                 }
               />
 
 </ScrollView>
-      </KeyboardAvoidingView>
+      </LinearGradient>
 
 
             
@@ -470,7 +473,7 @@ const styles = StyleSheet.create({
     bottom: 40,
   },
   loginLbl: {
-    color: '#000',
+    color: 'white',
     fontSize: 20,
     marginBottom:10,
     textAlign:'center',
@@ -482,7 +485,7 @@ const styles = StyleSheet.create({
     bottom: 35,
   },
   forgotDesLbl: {
-    color: '#000',
+    color: 'white',
    // fontFamily: Fonts.type.NotoSansRegular,
   },
   //registerLbl: {color: '#0057ff', fontFamily: Fonts.type.NotoSansSemiBold},
@@ -541,8 +544,8 @@ registerLbl:{
         justifyContent:'space-between',
         flex:1,
 
-        borderWidth:2,
-        borderColor:'black',
+        borderWidth:1,
+        borderColor:'white',
         
          
     },

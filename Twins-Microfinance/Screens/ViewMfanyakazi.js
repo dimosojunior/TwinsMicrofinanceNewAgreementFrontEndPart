@@ -61,12 +61,14 @@ const ViewMfanyakazi = ({navigation, route}) => {
     id,
     full_name,
     //NidaNo,
-   JinaLaKituo,
+   BranchName,
     //FarmerSize,
    // date_of_birth,
     username,
     profile_image,
     date_joined,
+    phone,
+    email
   
    
    } = route.params
@@ -196,7 +198,7 @@ const [KiasiChaRejeshoChaSiku, setKiasiChaRejeshoChaSiku] = useState(0);
     //setUserToken(token);
     //console.log("USER", userToken);
     try {
-      await axios.delete(EndPoint + `/DeleteKituoView/${postId}/delete/`, {
+      await axios.delete(EndPoint + `/DeleteMyUserView/${postId}/delete/`, {
         headers: {
           Authorization: `Token ${userToken}`,
         },
@@ -283,7 +285,7 @@ keyboardShouldPersistTaps="handled"
       )}
 
       <Text style={globalStyles.TaarifaBinafsiJinaLaMteja}>
-     Jina Analotumia: {Username}    
+     Jina Analotumia: {username}    
       </Text>
       
      
@@ -329,9 +331,9 @@ keyboardShouldPersistTaps="handled"
     
    
           
- {JinaLaKituo && JinaLaKituo.JinaLaKituo && (
+ {BranchName && BranchName.BranchName && (
        <Text style={globalStyles.TaarifaBinafsiSimuYaMteja}>
-     Kikundi Chake: {JinaLaKituo.JinaLaKituo}    
+     Branch: {BranchName.BranchName}    
       </Text>
       )}
 
@@ -378,7 +380,7 @@ keyboardShouldPersistTaps="handled"
   </ScrollView>
 
      
-{((userData && userData.is_admin === true) || (userData && userData.username === Username))  && (
+{((userData && userData.is_admin === true) || (userData && userData.username === username))  && (
 
 
    <Pressable
@@ -462,107 +464,6 @@ keyboardShouldPersistTaps="handled"
 
         </Pressable>
         )}
-
-{((userData && userData.is_admin === true) || (userData && userData.username === Username))  && (
-
-
-        <Pressable
-          style={[{
-            flexDirection: "row",
-            alignItems: "center",
-            padding: 0,
-            justifyContent: "space-between",
-            //backgroundColor: "white",
-            position:'absolute',
-            bottom:0,
-          //  width:'100%',
-          right:5,
-
-          },
-           
-          ]}
-        >
-        {/*  <View style={{
-            width:'50%',
-          }}>
-            <Text style={{ 
-              fontFamily:'Medium'
-            }}>
-              Bei ya jumla
-            </Text>
-
-             <Text style={{ 
-              fontFamily:'Medium'
-            }}>
-              Tsh. {formatToThreeDigits(totalCartPrice)}/=
-            </Text>
-           
-          </View>*/}
-
-         
-
-          <TouchableOpacity
-         //onPress={handleDeletePost}
-        //    onPress={() => {
-        
-        // // setSelectedProduct(item);
-        //  //setSelectedProduct(id);
-        // setModalVisible(true);
-        // }}
-
-          onPress={() => navigation.navigate("Update Mfanyakazi", 
-            {
-               postId,
-            id,
-            full_name,
-            //NidaNo,
-           JinaLaKituo,
-            //FarmerSize,
-           // date_of_birth,
-            username,
-            profile_image,
-            date_joined,
-          
-             } 
-            )}
-        
-           
-            style={{
-              
-              padding: 10,
-             // width:'100%',
-              borderRadius: 6,
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: 10,
-            }}
-          >
-            
-            <Text style={{
-             //fontSize: 16, 
-             //fontWeight: "500", 
-             color: "white" ,
-            // padding:13,
-             backgroundColor: "#015d68",
-             borderColor:'white',
-             borderWidth:1,
-             textAlign:'center',
-             borderRadius:8,
-            // width:'100%',
-             fontFamily:'Light',
-             paddingVertical:10,
-             paddingHorizontal:20,
-
-           }}>
-              Badili
-            </Text>
-          </TouchableOpacity>
-          
-
-        </Pressable>
-        )}
-   
 
   <AwesomeAlert
                 show={showAlert}

@@ -24,6 +24,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import { getFormatedDate } from "react-native-modern-datepicker";
 import DatePicker from "react-native-modern-datepicker";
 
+import { LinearGradient } from 'expo-linear-gradient';
 
 const { width, height } = Dimensions.get('window');
 
@@ -542,8 +543,8 @@ console.log("KiasiAnachokopa", KiasiAnachokopa);
 
           
       
-       <KeyboardAvoidingView style={styles.mainCon}>
-
+     <LinearGradient colors={['#015d68', '#000']} style={globalStyles.container}>
+   
        <MinorHeader />
         <ScrollView 
         keyboardShouldPersistTaps="handled"
@@ -1561,14 +1562,14 @@ console.log("KiasiAnachokopa", KiasiAnachokopa);
                 customView={
                   <View style={globalStyles.alertContent}>
                     <Image source={require('../assets/icon.png')} style={globalStyles.alertImage} />
-                    <Text style={globalStyles.alertTitle}>Gegwajo Microfinance</Text>
+                    <Text style={globalStyles.alertTitle}>Twins Microfinance</Text>
                     <Text style={globalStyles.alertMessage}>{alertMessage}</Text>
                   </View>
                 }
               />
 
 </ScrollView>
-      </KeyboardAvoidingView>
+      </LinearGradient>
 
 
             
@@ -1581,6 +1582,8 @@ console.log("KiasiAnachokopa", KiasiAnachokopa);
   );
 };
 export default RenewMteja;
+
+
 
 const styles = StyleSheet.create({
   mainCon: {
@@ -1602,7 +1605,7 @@ const styles = StyleSheet.create({
     bottom: 40,
   },
   loginLbl: {
-    color: '#000',
+    color: 'white',
     fontSize: 20,
     marginBottom:10,
     textAlign:'center',
@@ -1614,7 +1617,7 @@ const styles = StyleSheet.create({
     bottom: 35,
   },
   forgotDesLbl: {
-    color: '#000',
+    color: 'white',
    // fontFamily: Fonts.type.NotoSansRegular,
   },
   //registerLbl: {color: '#0057ff', fontFamily: Fonts.type.NotoSansSemiBold},
@@ -1660,7 +1663,7 @@ registerLbl:{
       color: COLORS.white,
         fontSize: SIZES.h3,
         // borderBottomColor: COLORS.lightGrey,
-        borderColor: COLORS.green,
+        borderColor: 'white',
         borderWidth: 1,
         paddingVertical: 10,
         marginHorizontal: 15,
@@ -1673,8 +1676,8 @@ registerLbl:{
         justifyContent:'space-between',
         flex:1,
 
-        borderWidth:2,
-        borderColor:'black',
+       // borderWidth:2,
+        //borderColor:'black',
         
          
     },
@@ -1687,7 +1690,7 @@ registerLbl:{
         
         
         marginHorizontal: 0,
-        
+
         padding:0,
         
     },

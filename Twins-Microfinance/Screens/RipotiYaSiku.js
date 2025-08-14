@@ -891,63 +891,6 @@ style={{
 </TouchableOpacity>
 
 
-       
-{!SharedClicked ? (
-
-        <TouchableOpacity
-//onPress={() => setModalVisible(true)}
-onPress={print}
-
-style={{
-   padding: 10,
-    width:'50%',
-    borderRadius: 6,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 10,
-}}
- >
-    <Text 
-    style={{
-      color: "black" ,
-      // padding:13,
-       backgroundColor: "wheat",
-       borderColor:'white',
-       borderWidth:1,
-       textAlign:'center',
-       borderRadius:8,
-       width:'100%',
-       fontFamily:'Light',
-       paddingVertical:10,
-    }}
-
-   >Share</Text>
-
-</TouchableOpacity>
-
-):(
-
-        <TouchableOpacity
-//onPress={() => setModalVisible(true)}
-//onPress={print}
-
-style={{
-   padding: 10,
-    width:'50%',
-    borderRadius: 6,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 10,
-}}
- >
-  <ActivityIndicator size="large" color="red" /> 
-
-</TouchableOpacity>
-
-)}
-
         </Pressable>
    
 

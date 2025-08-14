@@ -197,10 +197,10 @@ const handleErrorMessage = (error) => {
   // }
 
 
- if (!selectedJinaLaKituo) {
-          showAlertFunction('Tafadhali chagua kikundi unachomsajili mtumiaji.');
-          return;
-        }
+ // if (!selectedJinaLaKituo) {
+ //          showAlertFunction('Tafadhali chagua kikundi unachomsajili mtumiaji.');
+ //          return;
+ //        }
 
   // Fetch the Expo push token
   // const expoPushToken = await registerForPushNotificationsAsync();

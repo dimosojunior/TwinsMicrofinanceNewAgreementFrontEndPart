@@ -470,14 +470,14 @@ useEffect(() => {
 //---------------Hii kama akiwa hajafilter by date---
 const [selectedCategory, setSelectedCategory] = useState('all');
 
-const fetchProductsByCategory = async (JinaLaKituoId) => {
+const fetchProductsByCategory = async (JinaLaKituoName) => {
   setPending(true);
   try {
     const token = await AsyncStorage.getItem('userToken');
-    let url = `${EndPoint}/FilterGetWatejaHaiWote/?page=1&page_size=500`;
+    let url = `${EndPoint}/FilterGetMarejeshoKwaSikuYaLeoView/?page=1&page_size=500`;
 
-    if (JinaLaKituoId !== 'all') {
-      url += `&JinaLaKituo_id=${JinaLaKituoId}`;
+    if (JinaLaKituoName !== 'all') {
+      url += `&JinaLaKituo=${encodeURIComponent(JinaLaKituoName)}`;
     }
 
     const res = await fetch(url, {
@@ -485,7 +485,7 @@ const fetchProductsByCategory = async (JinaLaKituoId) => {
     });
     const data = await res.json();
     setQueryset(data.queryset || []);
-    setTotalRejeshoLeo(data.total_rejesho_leo); // Set the total amount
+    setTotalRejeshoLeo(data.total_rejesho_leo);
     setPending(false);
   } catch (error) {
     console.error(error);
@@ -520,14 +520,15 @@ const CategoryButton = ({ title, onPress, isActive }) => (
 //---------------Hii kama akiwa hajafilter by date---
 const [selectedCategory2, setSelectedCategory2] = useState('all');
 
-const fetchProductsByCategory2 = async (JinaLaKituoId) => {
+const fetchProductsByCategory2 = async (JinaLaKituoName) => {
   setPending(true);
   try {
     const token = await AsyncStorage.getItem('userToken');
+    const formattedStartDate = formatDate(startDate);
     let url = `${EndPoint}/Filter_FilterMarejeshoYaSikuByDate/?startDate=${formattedStartDate}&page=1&page_size=500`;
 
-    if (JinaLaKituoId !== 'all') {
-      url += `&JinaLaKituo_id=${JinaLaKituoId}`;
+    if (JinaLaKituoName !== 'all') {
+      url += `&JinaLaKituo=${encodeURIComponent(JinaLaKituoName)}`;
     }
 
     const res = await fetch(url, {
@@ -535,7 +536,7 @@ const fetchProductsByCategory2 = async (JinaLaKituoId) => {
     });
     const data = await res.json();
     setQueryset(data.queryset || []);
-    setTotalRejeshoLeo(data.total_rejesho_leo); // Set the total amount
+    setTotalRejeshoLeo(data.total_rejesho_leo);
     setPending(false);
   } catch (error) {
     console.error(error);
@@ -544,7 +545,7 @@ const fetchProductsByCategory2 = async (JinaLaKituoId) => {
 };
 
 // Component ya category button
-const CategoryButton = ({ title, onPress, isActive }) => (
+const CategoryButton2 = ({ title, onPress, isActive }) => (
   <TouchableOpacity
     onPress={onPress}
     style={{
@@ -560,6 +561,7 @@ const CategoryButton = ({ title, onPress, isActive }) => (
     </Text>
   </TouchableOpacity>
 );
+
 
 //---------------mwisho hapa Hii kama akiwa hajafilter by date---
 
@@ -661,48 +663,51 @@ const TableRowComponent = ({ item}) => {
           <MinorHeader />
 
                           {/* Categories List */}
-   {!isRange ? (
-<View style={{ marginVertical: 10, marginHorizontal: 20 }}>
-  <FlatList
-    data={[{ id: 'all', JinaLaKituo: 'All' }, ...JinaLaKituo]}
-    keyExtractor={(item) => item.id.toString()}
-    horizontal
-    showsHorizontalScrollIndicator={false}
-    renderItem={({ item }) => (
-      <CategoryButton
-        title={item.JinaLaKituo}
-        isActive={selectedCategory === item.id}
-        onPress={() => {
-          setSelectedCategory(item.id);
-          fetchProductsByCategory(item.id);
-        }}
-      />
-    )}
-  />
-</View>
- ):(
+  
+  {!startDate ? (
 
- <View style={{ marginVertical: 10, marginHorizontal: 20 }}>
-  <FlatList
-    data={[{ id: 'all', JinaLaKituo: 'All' }, ...JinaLaKituo]}
-    keyExtractor={(item) => item.id.toString()}
-    horizontal
-    showsHorizontalScrollIndicator={false}
-    renderItem={({ item }) => (
-      <CategoryButton2
-        title={item.JinaLaKituo}
-        isActive={selectedCategory2 === item.id}
-        onPress={() => {
-          setSelectedCategory2(item.id);
-          fetchProductsByCategory2(item.id);
-        }}
-      />
-    )}
-  />
-</View>
+  <View style={{ marginVertical: 10, marginHorizontal: 20 }}>
+        <FlatList
+          data={[{ id: 'all', JinaLaKituo: 'All' }, ...JinaLaKituo]}
+          keyExtractor={(item) => item.id.toString()}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          renderItem={({ item }) => (
+            <CategoryButton
+              title={item.JinaLaKituo}
+              isActive={selectedCategory === item.JinaLaKituo || (item.id === 'all' && selectedCategory === 'all')}
+              onPress={() => {
+                setSelectedCategory(item.id === 'all' ? 'all' : item.JinaLaKituo);
+                fetchProductsByCategory(item.id === 'all' ? 'all' : item.JinaLaKituo);
+              }}
+            />
+          )}
+        />
+      </View>
 
- )}
+):(
 
+  <View style={{ marginVertical: 10, marginHorizontal: 20 }}>
+        <FlatList
+          data={[{ id: 'all', JinaLaKituo: 'All' }, ...JinaLaKituo]}
+          keyExtractor={(item) => item.id.toString()}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          renderItem={({ item }) => (
+            <CategoryButton2
+              title={item.JinaLaKituo}
+              isActive={selectedCategory2 === item.JinaLaKituo || (item.id === 'all' && selectedCategory2 === 'all')}
+              onPress={() => {
+                setSelectedCategory2(item.id === 'all' ? 'all' : item.JinaLaKituo);
+                fetchProductsByCategory2(item.id === 'all' ? 'all' : item.JinaLaKituo);
+              }}
+            />
+          )}
+        />
+      </View>
+
+
+)}
 
           <View style={{ width: '100%', marginVertical: 0 }}>
            {!isRange ? (
